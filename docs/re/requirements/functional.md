@@ -1705,3 +1705,252 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #7)
+
+## Supplies
+
+### FR-116 — Supply catalog
+- **Statement:** The system shall allow the Tenant Admin to manage a supply catalog where each item has a name and a unit of measure.
+- **Rationale:** Supply requests use tenant-defined catalog items.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Tenant Admin, when they add an item 'Shaving foam' with unit 'can', then the item is selectable in supply requests of all branches.
+- **Verification Method:** Test
+- **Dependencies:** FR-001
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-117 — Create supply request
+- **Statement:** The system shall allow the Branch Manager to submit a supply request for their branch containing catalog items with quantities.
+- **Rationale:** Branch managers request supplies from the tenant.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Branch Manager, when they submit a request with two catalog items and quantities, then the request exists with status Submitted.
+  - AC2: Given a request without items, when it is submitted, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-012, FR-116
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-118 — Free supply items
+- **Statement:** The system shall allow the Branch Manager to add items not in the catalog to a supply request with a name and a quantity.
+- **Rationale:** Needs outside the catalog are allowed.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a supply request, when the Branch Manager adds a free item 'Mirror cleaner' with quantity 2, then the request contains that item.
+- **Verification Method:** Test
+- **Dependencies:** FR-117
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-119 — Notify tenant of supply request
+- **Statement:** The system shall notify the Tenant Admin when a supply request is submitted.
+- **Rationale:** The tenant acts on requests.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a submitted request, when it is saved, then the Tenant Admin receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-117
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-120 — Approve or reject supply request
+- **Statement:** The system shall allow the Tenant Admin to approve or reject a submitted supply request, requiring a reason for rejection.
+- **Rationale:** Status workflow: Submitted → Approved / Rejected (with reason).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Submitted request, when the Tenant Admin approves it, then its status is Approved.
+  - AC2: Given a Submitted request, when the Tenant Admin rejects it without a reason, then the system rejects the action.
+- **Verification Method:** Test
+- **Dependencies:** FR-117
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-121 — Complete supply request with costs
+- **Statement:** The system shall allow the Tenant Admin to mark an approved supply request as Purchased/Delivered, requiring a cost amount and currency for each item.
+- **Rationale:** Costs per item feed the branch expense report.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given an Approved request with two items, when the Tenant Admin completes it with a cost and currency for each item, then its status is Purchased/Delivered.
+  - AC2: Given a missing item cost, when completion is submitted, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-120
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-122 — Notify branch manager of supply status
+- **Statement:** The system shall notify the requesting Branch Manager when the status of their supply request changes.
+- **Rationale:** Managers follow their requests.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a request changes from Submitted to Approved, when the change is saved, then the Branch Manager receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-120, FR-121
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-123 — Exchange rate snapshot on supply costs
+- **Statement:** The system shall store the SYP/USD exchange rate in effect with each recorded supply item cost.
+- **Rationale:** Expense reports remain correct after rate changes.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a cost recorded at rate X, when the rate later changes, then the record still shows rate X.
+- **Verification Method:** Test
+- **Dependencies:** FR-121
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-004
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-124 — Branch supply expense report
+- **Statement:** The system shall provide the Tenant Admin with a supply expense report per branch for a selected period in SYP.
+- **Rationale:** Tenant follows branch costs.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given two completed requests for branch X in October totalling 50,000 SYP, when the Tenant Admin views branch X's report for October, then the total is 50,000 SYP.
+  - AC2: Given a USD cost, when it is reported, then it is converted to SYP at its stored rate.
+- **Verification Method:** Test
+- **Dependencies:** FR-121, FR-123
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+
+## Payroll and Reports
+
+### FR-125 — Barber salary
+- **Statement:** The system shall allow the Tenant Admin to set a monthly salary in SYP for each barber.
+- **Rationale:** Barbers earn a salary plus commission.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber, when the Tenant Admin sets a salary of S SYP, then S appears as the salary line of the barber's next payroll statement.
+- **Verification Method:** Test
+- **Dependencies:** FR-005
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-126 — Commission rate snapshot
+- **Statement:** The system shall store with each completed booking service the commission rate in effect at completion.
+- **Rationale:** Rate changes do not alter past commissions.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a service with rate 30% at completion, when the Tenant Admin later changes it to 40%, then that completed service still uses 30%.
+- **Verification Method:** Test
+- **Dependencies:** FR-041, FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-127 — Commission calculation
+- **Statement:** The system shall calculate a barber's commission for each completed service as the service's paid amount in SYP multiplied by its stored commission rate.
+- **Rationale:** Commission is per service on the paid amount after discount.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a service paid 10,000 SYP with rate 30%, when commission is calculated, then it equals 3,000 SYP.
+  - AC2: Given a service paid 10 USD at a stored rate of 13,000 SYP/USD and rate 30%, when commission is calculated, then it equals 39,000 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-064, FR-065, FR-126
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-128 — Payroll manual items
+- **Statement:** The system shall allow the Tenant Admin to add advances, deductions and bonuses with an amount in SYP to a barber's payroll statement.
+- **Rationale:** Statements include manual items.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber's statement for October, when the Tenant Admin adds an advance of 20,000 SYP, then the statement lists it and the net amount decreases by 20,000 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-129
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-129 — Monthly payroll statement
+- **Statement:** The system shall produce for each barber a payroll statement per calendar month with salary, total commission, manual items and net amount.
+- **Rationale:** Monthly statement per barber.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber with salary 500,000, commission 150,000, a bonus of 50,000 and a deduction of 20,000 in October, when the October statement is viewed, then the net amount is 680,000 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-125, FR-127
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-130 — Payroll statement visibility
+- **Statement:** The system shall show payroll statements only to the Tenant Admin and to the barber concerned.
+- **Rationale:** Branch Managers do not see statements.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given barber B's statement, when B opens payroll, then B sees only B's statements.
+  - AC2: Given a Branch Manager, when they look for payroll statements, then none are available.
+- **Verification Method:** Test
+- **Dependencies:** FR-129
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-131 — Attribute services to performing branch
+- **Statement:** The system shall attribute each completed service to the branch where it was performed.
+- **Rationale:** Services by temporarily transferred barbers count for the branch where they were performed.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given barber B of branch X temporarily transferred to branch Y, when B completes a service at Y, then the service counts in branch Y's reports.
+- **Verification Method:** Test
+- **Dependencies:** FR-015, FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-132 — Branch activity report
+- **Statement:** The system shall provide the Branch Manager and the Tenant Admin with the number of completed services per barber of a branch for a selected period.
+- **Rationale:** Branch managers follow employee activity.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given barber B completed 12 services at branch X in October, when the manager of X views October's report, then B shows 12.
+- **Verification Method:** Test
+- **Dependencies:** FR-012, FR-131
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
