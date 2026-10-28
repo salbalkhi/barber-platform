@@ -4,7 +4,7 @@
 
 **Requirements**: FR-021, FR-022, FR-023, FR-024, FR-025, FR-026, FR-142, FR-153, FR-154
 
-**Feature Branch**: `spec/F-002-plans-entitlements-update`
+**Feature Branch**: `spec/F-002-plans-entitlements-followup`
 
 **Created**: 2026-10-28
 
@@ -40,6 +40,15 @@ added (PR #19) and approved (PR #20).
   features (FR-085-AC3, FR-035); no new scenarios in F-002.
 - Q9 (FR-026-AC1, FR-026-AC2) → deferred verification, verifiable after F-003.
 - Q10 (credits without AI preview) → resolved by CR-001 in FR-025.
+
+Product owner answers to the open questions of PR #21 (no requirement changes):
+
+- FR-154-AC1, FR-154-AC2 → deferred verification, verifiable after F-005. F-005 owns plan selection
+  for new subscriptions, upgrades and renewals, and the current subscription period.
+  FR-154-AC3 is verifiable now.
+- FR-035 → belongs to F-005 (range FR-027..FR-040 in `docs/re/features.md`), not F-007; this
+  corrects the Q8 answer above. Its verification depends on F-007, where quota grants and previews
+  are defined.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -84,11 +93,12 @@ attempting to delete or retire the free plan, and configuring the matrix.
    its name and its plan-feature matrix entries can be changed.
 9. **FR-142-AC5**: **Given** the free plan, **when** the Platform Operator saves a paid plan with a
    level lower than or equal to the free plan's level, **then** the system rejects it.
-10. **FR-154-AC1**: **Given** a retired plan, **when** a Tenant Admin opens the plan selection,
-    **then** the retired plan is not offered. *(See Q1 below.)*
-11. **FR-154-AC2**: **Given** a tenant subscribed to a plan that is then retired, **when** the plan
-    is viewed during the current period, **then** the tenant keeps it until its expiry date.
-    *(See Q1 below.)*
+10. **FR-154-AC1** *(deferred verification — implemented now, verifiable after F-005)*: **Given** a
+    retired plan, **when** a Tenant Admin opens the plan selection, **then** the retired plan is not
+    offered.
+11. **FR-154-AC2** *(deferred verification — implemented now, verifiable after F-005)*: **Given** a
+    tenant subscribed to a plan that is then retired, **when** the plan is viewed during the current
+    period, **then** the tenant keeps it until its expiry date.
 12. **FR-154-AC3**: **Given** the free plan, **when** the Platform Operator tries to retire it,
     **then** the system rejects the request.
 
@@ -174,7 +184,7 @@ Edge cases covered by acceptance criteria:
   (FR-021-AC5, deferred).
 - The Platform Operator attempts to delete the free plan (FR-142-AC2), edit its price, duration or
   level (FR-142-AC4) or retire it (FR-154-AC3).
-- A plan is retired while tenants are subscribed to it (FR-154-AC2).
+- A plan is retired while tenants are subscribed to it (FR-154-AC2, deferred).
 - AI haircut preview disabled for a plan with included credits (FR-025-AC2).
 - A tenant's grace period ends (FR-022-AC2, deferred).
 - The operator enables a feature while customers already have the app installed (FR-026-AC3).
@@ -225,11 +235,11 @@ are set here (constitution Principle IV).
 
 ### Measurable Outcomes
 
-- **SC-001**: All 21 non-deferred acceptance scenarios of FR-021, FR-022, FR-023, FR-024, FR-025,
+- **SC-001**: All 19 non-deferred acceptance scenarios of FR-021, FR-022, FR-023, FR-024, FR-025,
   FR-026, FR-142, FR-153 and FR-154 pass.
-- **SC-002**: The deferred scenarios pass once their features are delivered, without changes to
-  this feature's behavior: FR-021-AC5 and FR-022-AC2 after F-005, FR-026-AC1 and FR-026-AC2 after
-  F-003, FR-024-AC2 after F-010.
+- **SC-002**: The 7 deferred scenarios pass once their features are delivered, without changes to
+  this feature's behavior: FR-021-AC5, FR-022-AC2, FR-154-AC1 and FR-154-AC2 after F-005,
+  FR-026-AC1 and FR-026-AC2 after F-003, FR-024-AC2 after F-010.
 - **SC-003**: The Platform Operator changes which tenant features a plan provides without an app
   release (FR-023, FR-026-AC3).
 
@@ -241,10 +251,10 @@ Sequencing constraints for implementation; they are not part of this feature's s
   tenant); FR-024 depends on FR-003 (create branch, which provides the branch phone number used by
   FR-024-AC1).
 - **F-011 — Notifications Foundation** (transitive only, through F-001).
-- **Deferred verification**: F-003 (FR-026-AC1, FR-026-AC2), F-005 (FR-021-AC5, FR-022-AC2),
-  F-010 (FR-024-AC2).
-- **Tenant-side enforcement in owning features**: discount codes (FR-085-AC3, F-006) and AI preview
-  grants (FR-035, F-005 per `docs/re/features.md`; see Q2).
+- **Deferred verification**: F-003 (FR-026-AC1, FR-026-AC2), F-005 (FR-021-AC5, FR-022-AC2,
+  FR-154-AC1, FR-154-AC2), F-010 (FR-024-AC2).
+- **Tenant-side enforcement in owning features**: discount codes, FR-085-AC3 (F-006); AI preview
+  grants, FR-035 (F-005; verifiable after F-007).
 
 ## Out of Scope
 
@@ -252,23 +262,17 @@ Sequencing constraints for implementation; they are not part of this feature's s
   (FR-027 manual activation, FR-028 Sham Cash). F-002 has no direct plan assignment.
 - Subscription payments, activation, renewal, grace period and fallback to the free plan after it
   (F-005).
-- Tenant-side enforcement of disabled features in the owning features: discount codes
-  (FR-085-AC3, F-006) and AI preview grants (FR-035).
+- Tenant-side enforcement of disabled features in the owning features: discount codes,
+  FR-085-AC3 (F-006); AI preview grants, FR-035 (F-005; verifiable after F-007).
 - Credit batches and their consumption (F-007).
 - In-app chat itself (F-010).
 - Search ordering by plan level (F-004).
 
 ## Assumptions
 
-None. Per constitution Principle IV, gaps are not resolved by assumption; they are listed below.
+None. Per constitution Principle IV, gaps are not resolved by assumption; they are raised as
+questions for the product owner.
 
 ## Questions for the product owner
 
-- **Q1 (FR-154-AC1, FR-154-AC2)**: Both scenarios need subscriptions. AC1 needs the Tenant Admin's
-  plan selection (FR-028, F-005), and AC2 needs a tenant in a current subscription period (F-005).
-  Should FR-154-AC1 and FR-154-AC2 be marked as deferred verification, verifiable after F-005, like
-  FR-021-AC5?
-- **Q2 (FR-035)**: The answer to Q8 places FR-035 (Freeze preview credits on fallback) in F-007.
-  `docs/re/features.md` lists F-007 as FR-066..FR-084, FR-149, FR-150, and F-005 as
-  FR-027..FR-040, which puts FR-035 in F-005. Which feature owns FR-035? The spec follows
-  `features.md` (F-005) until this is confirmed.
+None open. All questions are resolved and recorded under "Clarifications".

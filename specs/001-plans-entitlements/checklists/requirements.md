@@ -2,7 +2,7 @@
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning
 **Created**: 2026-10-28
-**Updated**: 2026-10-28 (product owner answers to Q1–Q10; CR-001; FR-153, FR-154)
+**Updated**: 2026-10-28 (product owner answers to Q1–Q10; CR-001; FR-153, FR-154; PR #21 questions)
 **Feature**: [spec.md](../spec.md)
 
 ## Content Quality
@@ -36,12 +36,12 @@
   "Questions for the product owner" section.
 - Previous Q1–Q10 are resolved and recorded under "Clarifications". CR-001 resolved Q3, Q6, Q7 and
   Q10; FR-153 resolved Q1, and FR-154 resolved Q4.
-- All 26 acceptance criteria of the nine requirements are mapped one-to-one. Five are marked
-  deferred verification: FR-021-AC5 and FR-022-AC2 (after F-005), FR-026-AC1 and FR-026-AC2
-  (after F-003), and FR-024-AC2 (after F-010).
-- Two new questions remain open. Neither blocks the testability of the requirements:
-  - Q1: should FR-154-AC1 and FR-154-AC2 be deferred until F-005?
-  - Q2: which feature owns FR-035, F-005 or F-007?
-
-  Both affect verification sequencing and dependency notes only; they should be answered before
-  `/speckit-plan`.
+- All 26 acceptance criteria of the nine requirements are mapped one-to-one. Seven are marked
+  deferred verification:
+  - FR-021-AC5, FR-022-AC2, FR-154-AC1 and FR-154-AC2, after F-005.
+  - FR-026-AC1 and FR-026-AC2, after F-003.
+  - FR-024-AC2, after F-010.
+- The two questions from PR #21 are resolved and recorded under "Clarifications":
+  - FR-154-AC1 and FR-154-AC2 are deferred until F-005.
+  - FR-035 belongs to F-005 and is verifiable after F-007.
+- No questions for the product owner remain open. The spec is ready for `/speckit-plan`.
