@@ -1429,3 +1429,279 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #6)
+
+## Search, Ratings and Favorites
+
+### FR-097 — Search by name
+- **Statement:** The system shall allow users to search branches and barbers by name.
+- **Rationale:** Name is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch named 'Al Noor', when a user searches 'Noor', then that branch appears in the results.
+- **Verification Method:** Test
+- **Dependencies:** FR-003, FR-005
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-098 — Search by service
+- **Statement:** The system shall allow users to search branches by an offered service.
+- **Rationale:** Service is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given branch X with active service 'Beard trim' and branch Y without it, when a user searches 'Beard trim', then X appears and Y does not.
+- **Verification Method:** Test
+- **Dependencies:** FR-043
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-099 — Sort by proximity
+- **Statement:** The system shall allow users to sort search results by distance from their current location.
+- **Rationale:** Proximity is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given location permission is granted and two branches at 1 km and 5 km, when sorting by proximity within the same plan level, then the 1 km branch is listed first.
+- **Verification Method:** Test
+- **Dependencies:** FR-003
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-001
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-100 — Sort by rating
+- **Statement:** The system shall allow users to sort search results by average rating.
+- **Rationale:** Rating is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given two branches of the same plan level rated 4.5 and 3.9, when sorting by rating, then the 4.5 branch is listed first.
+- **Verification Method:** Test
+- **Dependencies:** FR-104
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-101 — Plan-level ordering
+- **Statement:** The system shall order search results by tenant plan level, from highest to lowest with the free plan last, before applying the user's chosen criterion.
+- **Rationale:** Paid plans rank higher; the free plan always appears after all paid plans.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a free-plan branch at 1 km and a paid-plan branch at 5 km, when sorting by proximity, then the paid-plan branch is listed first.
+  - AC2: Given two paid plans of levels 2 and 1, when results are listed, then all level-2 branches precede all level-1 branches.
+- **Verification Method:** Test
+- **Dependencies:** FR-021, FR-022
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-102 — Display ratings in results
+- **Statement:** The system shall display the average rating and the number of ratings of each branch and barber in search results and on their pages.
+- **Rationale:** Only the average and count are public.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch with ratings 5 and 4, when it appears in results, then it shows 4.5 and 2 ratings.
+- **Verification Method:** Test
+- **Dependencies:** FR-104
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-103 — Maps navigation
+- **Statement:** The system shall open driving directions to a branch in Google Maps when the customer selects navigation and the tenant's plan enables maps navigation.
+- **Rationale:** Paid feature: open maps to reach the branch by car.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a plan with maps navigation enabled, when the customer taps navigation, then Google Maps opens with driving directions to the branch location.
+  - AC2: Given a plan without it, when the branch page is shown, then no navigation action is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-003, FR-026
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-001
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-104 — Rate barber
+- **Statement:** The system shall allow a customer to rate the barber of their completed booking from 1 to 5 stars with an optional comment.
+- **Rationale:** Barbers are rated after completed bookings.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a completed booking, when the customer submits 4 stars without a comment, then the rating is saved for the barber.
+  - AC2: Given a booking that is not completed, when the customer tries to rate, then no rating action is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-105 — Rate branch
+- **Statement:** The system shall allow a customer to rate the branch of their completed booking from 1 to 5 stars with an optional comment.
+- **Rationale:** Branches are rated after completed bookings.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a completed booking, when the customer submits 5 stars with a comment, then the rating is saved for the branch.
+- **Verification Method:** Test
+- **Dependencies:** FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-106 — One rating per completed booking
+- **Statement:** The system shall accept at most one barber rating and one branch rating per completed booking.
+- **Rationale:** One rating per completed booking.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a completed booking already rated, when the customer tries to rate it again, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-104, FR-105
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-107 — Rating comment visibility
+- **Statement:** The system shall show rating comments only to the Tenant Admin, to the Branch Manager for their branch and its barbers, and to the barber for comments about them.
+- **Rationale:** Comments are not public.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a comment about barber B of branch X, when B, the manager of X or the Tenant Admin opens ratings, then the comment is shown.
+  - AC2: Given the same comment, when a customer or a manager of another branch views ratings, then the comment is not shown.
+- **Verification Method:** Test
+- **Dependencies:** FR-104, FR-105
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-108 — Report abusive comment
+- **Statement:** The system shall allow the Tenant Admin or the rated barber to report a rating comment to the Platform Operator.
+- **Rationale:** Abusive comments reach the operator through reports.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a comment about barber B, when B reports it, then the report appears in the Platform Operator's report list.
+- **Verification Method:** Test
+- **Dependencies:** FR-107
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-013
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-109 — Hide reported comment
+- **Statement:** The system shall allow the Platform Operator to hide a reported rating comment while keeping its star rating.
+- **Rationale:** The operator moderates abusive comments; stars remain part of the average.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a reported comment, when the Platform Operator hides it, then the comment is no longer shown to anyone and the rating's stars still count in the average.
+- **Verification Method:** Test
+- **Dependencies:** FR-108
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-013
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-110 — Favorite barber
+- **Statement:** The system shall allow a customer to add a barber to and remove a barber from their favorites.
+- **Rationale:** Customers choose their favorite barber.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber, when the customer adds them to favorites, then the barber appears in the customer's favorites.
+  - AC2: Given a favorite barber, when the customer removes them, then the barber no longer appears in the customer's favorites.
+- **Verification Method:** Test
+- **Dependencies:** FR-048
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-111 — Customer QR code
+- **Statement:** The system shall display a QR code identifying the customer in the customer app.
+- **Rationale:** Barbers add favorite customers only by scanning this QR code (no customer directory search).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a logged-in customer, when they open their QR code, then a QR code identifying their account is displayed.
+- **Verification Method:** Test
+- **Dependencies:** FR-046
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-112 — Favorite customer by QR
+- **Statement:** The system shall allow a barber to add a customer to the barber's favorite customers only by scanning the customer's QR code.
+- **Rationale:** Two-way favorites without exposing the customer directory.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer's QR code, when the barber scans it, then the customer appears in the barber's favorite customers.
+  - AC2: Given the barber app, when the barber looks for a way to search customers by name or phone, then none exists.
+- **Verification Method:** Test
+- **Dependencies:** FR-111
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-113 — Notify customer added as favorite
+- **Statement:** The system shall notify a customer when a barber adds them to the barber's favorite customers.
+- **Rationale:** The customer is informed and can refuse.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber adds a customer, when the addition is saved, then the customer receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-112
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005, OQ-011
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-114 — Remove self from barber favorites
+- **Statement:** The system shall allow a customer to remove themselves from a barber's favorite customers.
+- **Rationale:** The customer can refuse the addition or leave later.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer in barber B's favorites, when the customer removes themselves, then the customer no longer appears in B's favorite customers.
+- **Verification Method:** Test
+- **Dependencies:** FR-113
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-115 — Favorite barber city rule
+- **Statement:** The system shall show a favorite barber to a customer only while the barber's current branch is in the city of the branch where the favorite was created.
+- **Rationale:** Favorites follow a transferred barber within the same city and are kept but hidden across cities.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a favorite created at a branch in Damascus, when the barber is transferred to another Damascus branch, then the favorite is shown with the new branch.
+  - AC2: Given the barber is transferred to an Aleppo branch, when the customer opens favorites, then the barber is not shown.
+  - AC3: Given the barber returns to a Damascus branch, when the customer opens favorites, then the barber is shown again.
+- **Verification Method:** Test
+- **Dependencies:** FR-003, FR-015, FR-110
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)

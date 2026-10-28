@@ -2,7 +2,7 @@
 
 | ID | Question | Related | Raised | Owner | Status | Answer / Decision |
 |---|---|---|---|---|---|---|
-| OQ-001 | Feasibility: Can Google Maps Platform (API keys + billing) be provisioned and used for an app operated from and serving users in Syria? | — (map/navigation FRs, TBD) | 2026-10-28 | SH-01 | Open | — |
+| OQ-001 | Feasibility: Can Google Maps Platform (API keys + billing) be provisioned and used for an app operated from and serving users in Syria? | FR-003, FR-099, FR-103 | 2026-10-28 | SH-01 | Open | — |
 | OQ-002 | Feasibility: Can the Gemini API (account + billing + supported region) be used for the AI haircut preview for users in Syria? What are Gemini's data-retention terms and does it guarantee no training on submitted images? | FR-072 | 2026-10-28 | SH-01 | Open | — |
 | OQ-003 | Feasibility: Does Sham Cash provide a merchant/integration API (payment initiation, confirmation callback, refunds) usable for in-app subscription payments? | — (subscription payment FRs, TBD) | 2026-10-28 | SH-01 | Open | — |
 | OQ-004 | Feasibility: Which external provider supplies a real-time SYP/USD exchange rate via API, and which rate does it publish (Central Bank official vs. market)? Which rate type shall the system use? | — (currency FRs, TBD) | 2026-10-28 | SH-01 | Open | — |
