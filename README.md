@@ -1,24 +1,22 @@
-# RE Template
+# Barber Platform
 
-Repository template for projects managed with the **"هندسة المتطلبات RE"** Claude Project.
-It provides the standard requirements-engineering structure under `docs/re/` and the GitHub
-templates under `.github/`.
+Multi-tenant platform for barbershops in Syria: a customer Android app for discovering barbers and
+booking appointments, and a tenant Android app for managing branches, employees, services,
+bookings, promotions and payroll. iOS and web are planned for later releases.
 
-## Start a new project
-1. Click **Use this template** → create the new repository.
-2. Sync labels (labels are not copied by templates):
-   ```bash
-   scripts/setup-labels.sh owner/new-repo
-   ```
-3. Edit `docs/re/README.md` (project overrides) and fill `docs/re/SRS.md` with Claude.
-4. Replace this README with the project's own README.
+## Requirements
+Requirements are managed with a requirements-engineering workflow. The single source of truth is
+[`docs/re/`](docs/re/README.md):
 
-## Structure
-```
-docs/re/          Requirements documentation (Single Source of Truth)
-.github/          Issue templates, PR template, labels.json
-scripts/          setup-labels.sh
-```
+| Document | Purpose |
+|---|---|
+| [SRS](docs/re/SRS.md) | Purpose, scope, constraints |
+| [Stakeholders](docs/re/stakeholders.md) | Roles and requirement sources |
+| [Glossary](docs/re/glossary.md) | Domain terms |
+| [Open questions](docs/re/open-questions.md) | Pending decisions |
+| [RTM](docs/re/traceability/RTM.md) | Traceability matrix |
 
 ## Conventions
-See `docs/re/README.md`.
+- Conventional Commits with a `Refs:` trailer (e.g. `Refs: FR-001`).
+- No direct commits to `main`; every change goes through a pull request.
+- See [`docs/re/README.md`](docs/re/README.md) for details.
