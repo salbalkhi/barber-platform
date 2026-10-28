@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #4)
+Last updated: 2026-10-28 (PR #5)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -71,3 +71,22 @@ Last updated: 2026-10-28 (PR #4)
 | FR-063 | Complete booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-064 | Record payment per service | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-065 | Exchange rate snapshot on completion | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-066 | Grant preview quota | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-067 | Reserve credits on grant | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-068 | Grant limited by available credits | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-069 | Reduce or revoke quota | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-070 | Preview only within a booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-071 | Consent before upload | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-072 | Generate preview | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-073 | Deduct quota on preview | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-074 | Keep preview on device | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-075 | Preview visible to assigned barber only | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-076 | Delete preview on completion | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-077 | Delete preview on cancellation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-078 | Preview retention setting | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-079 | Delete preview after retention period | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-080 | Hide preview from newly assigned barber | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-081 | Customer consent for new barber | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-082 | Credit batch expiry date | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-083 | Move quotas on batch expiry | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-084 | Equal split of quotas on insufficient credits | Must | Proposed | SH-01 | — | — | — | — | — | — |
