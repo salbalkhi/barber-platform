@@ -33,7 +33,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ### FR-002 — Reset Tenant Admin password
@@ -48,7 +48,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-001
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ### FR-003 — Create branch
@@ -328,7 +328,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-022 — Free plan
@@ -417,7 +417,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-021
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-028 — Subscription payment via Sham Cash
@@ -446,7 +446,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-027, FR-028
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-003, OQ-013
+- **Open Questions:** OQ-003
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-030 — Exchange rate snapshot on payments
@@ -593,7 +593,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-040 — Purchase credit pack
@@ -1165,7 +1165,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #5)
 
 ### FR-079 — Delete preview after retention period
@@ -1601,7 +1601,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-107
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #7)
 
 ### FR-109 — Hide reported comment
@@ -1615,7 +1615,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-108
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #7)
 
 ### FR-110 — Favorite barber

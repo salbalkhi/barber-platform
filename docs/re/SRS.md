@@ -1,5 +1,5 @@
 # Software Requirements Specification — Barber Platform
-Version: 0.1 | Baseline: none | Last updated: 2026-10-28
+Version: 0.2 | Baseline: none | Last updated: 2026-10-28
 
 > Simplified outline inspired by ISO/IEC/IEEE 29148:2018. Requirement statements live in
 > `requirements/` and are referenced here, not duplicated.
@@ -46,7 +46,7 @@ A new, standalone system composed of:
 - **Customer app** (Android)
 - **Tenant app** (Android; used by tenant admins, branch managers and barbers)
 - **Platform backend** (shared, single database for all tenants)
-- **Platform operator functions** (channel to be confirmed — see OQ-013)
+- **Operator back-office** (web; used by the Platform Operator)
 
 External systems:
 
@@ -54,9 +54,9 @@ External systems:
 |---|---|---|
 | Sham Cash | Subscription and credit payments | OQ-003 |
 | Google Maps Platform | Location, proximity search, navigation hand-off | OQ-001 |
-| Google Gemini API | AI haircut preview | OQ-002 |
+| Google Gemini API (primary) + alternative AI provider (fallback) | AI haircut preview | OQ-002 |
 | Push provider (e.g. Firebase Cloud Messaging) | Push notifications | OQ-005 |
-| SMS/OTP provider | Customer phone verification | OQ-006 |
+| Local Syrian SMS provider | Customer phone verification (OTP) | OQ-006 |
 | Exchange-rate provider | Real-time SYP/USD rate | OQ-004 |
 
 ### 2.2 Product Functions
@@ -87,7 +87,7 @@ See [stakeholders.md](stakeholders.md).
 | ID | Constraint | Type | Source |
 |---|---|---|---|
 | C-01 | Multi-tenant architecture with a single shared database for all tenants | Technical | SH-01 |
-| C-02 | v1 clients are Android only | Business | SH-01 |
+| C-02 | v1 customer and tenant apps are Android only; the Platform Operator uses a web back-office | Business | SH-01 (OQ-013) |
 | C-03 | Market is Syria; currency SYP (new pound, after redenomination) as default; USD accepted at a real-time exchange rate | Business | SH-01 |
 | C-04 | Selected providers: Sham Cash (payments), Google Maps (maps), Gemini (AI preview) | Business | SH-01 |
 | C-05 | Customer payments for services happen at the shop in v1 | Business | SH-01 |
