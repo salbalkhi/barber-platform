@@ -313,3 +313,299 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** OQ-005, OQ-011
 - **History:** 2026-10-28 Proposed (PR #2)
+
+## Plans and Subscriptions
+
+### FR-021 — Manage plans
+- **Statement:** The system shall allow the Platform Operator to create and edit subscription plans with a name, a plan level, a price and a subscription duration.
+- **Rationale:** Plans and their number are decided after launch and are configured by the operator.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given the Platform Operator, when they create a plan with name, level, price and duration, then the plan is available for assignment to tenants.
+  - AC2: Given a non-operator user, when they attempt to create or edit a plan, then the system rejects the request.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-013
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-022 — Free plan
+- **Statement:** The system shall assign the free plan to every tenant that has no active paid subscription.
+- **Rationale:** The free plan grants presence on the platform with the lowest search priority.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a newly created tenant without a paid subscription, when its plan is viewed, then the plan is the free plan.
+  - AC2: Given a tenant whose grace period ended, when its plan is viewed, then the plan is the free plan.
+- **Verification Method:** Test
+- **Dependencies:** FR-001, FR-021
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-023 — Plan-feature matrix
+- **Statement:** The system shall allow the Platform Operator to enable or disable each tenant feature for each plan.
+- **Rationale:** Feature sets per plan are configurable without an app release (resolves the contact-feature conflict).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a plan and a feature, when the Platform Operator enables the feature for the plan, then the matrix shows the feature as enabled for that plan.
+  - AC2: Given the matrix, when it is viewed, then it lists at least: prices display, contact, booking, maps navigation, discount codes, AI haircut preview.
+- **Verification Method:** Test
+- **Dependencies:** FR-021
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-024 — Contact type per plan
+- **Statement:** The system shall allow the Platform Operator to set, for each plan, whether customer contact is by phone call or by in-app chat.
+- **Rationale:** Example decided by SH-01: phone call for the free plan, in-app chat for paid plans.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a plan set to phone call, when a customer views a branch of a tenant on that plan, then the contact action starts a phone call to the branch number.
+  - AC2: Given a plan set to in-app chat, when a customer views a branch of a tenant on that plan, then the contact action opens an in-app chat.
+- **Verification Method:** Test
+- **Dependencies:** FR-023
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-014
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-025 — Included preview credits per plan
+- **Statement:** The system shall allow the Platform Operator to set the number of AI preview credits included with each plan.
+- **Rationale:** Plans come pre-charged with preview credits.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a plan, when the Platform Operator sets its included credits to N, then the matrix shows N for that plan.
+- **Verification Method:** Test
+- **Dependencies:** FR-023
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-026 — Feature enforcement
+- **Statement:** The system shall provide a tenant feature to the tenant and its customers only when the feature is enabled for the tenant's current plan.
+- **Rationale:** Entitlements are the single control point for paid features.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant whose plan disables prices display, when a customer views its services, then no prices are shown.
+  - AC2: Given a tenant whose plan disables booking, when a customer views its branches, then no booking action is available.
+  - AC3: Given the operator enables a feature for the tenant's plan, when a customer next loads the tenant's page, then the feature is available without an app update.
+- **Verification Method:** Test
+- **Dependencies:** FR-023
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-027 — Manual subscription activation
+- **Statement:** The system shall allow the Platform Operator to activate a paid subscription for a tenant after an external payment.
+- **Rationale:** Manual activation is one of the two allowed payment paths.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant on the free plan, when the Platform Operator activates plan P for it, then the tenant's current plan is P with an expiry date equal to activation date plus P's duration.
+- **Verification Method:** Test
+- **Dependencies:** FR-021
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-013
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-028 — Subscription payment via Sham Cash
+- **Statement:** The system shall allow the Tenant Admin to pay for a subscription via Sham Cash from the tenant app.
+- **Rationale:** Electronic in-app payment is the second allowed payment path.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Tenant Admin selecting plan P, when the Sham Cash payment is confirmed, then the tenant's current plan is P with an expiry date equal to payment date plus P's duration.
+  - AC2: Given a failed or cancelled Sham Cash payment, when it returns, then the tenant's plan is unchanged.
+- **Verification Method:** Test
+- **Dependencies:** FR-021
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-003
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-029 — Payment integration settings
+- **Statement:** The system shall allow the Platform Operator to enable or disable each subscription payment method.
+- **Rationale:** Integrations are managed by the operator from the platform.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given the Sham Cash method is disabled, when a Tenant Admin opens the payment screen, then Sham Cash is not offered.
+- **Verification Method:** Test
+- **Dependencies:** FR-027, FR-028
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-003, OQ-013
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-030 — Exchange rate snapshot on payments
+- **Statement:** The system shall store the SYP/USD exchange rate in effect with each subscription and credit-pack payment record.
+- **Rationale:** Reports remain correct after rate changes.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a payment recorded at rate X, when the rate later changes to Y, then the payment record still shows rate X.
+- **Verification Method:** Test
+- **Dependencies:** FR-027, FR-028
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-004
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-031 — Renewal reminder
+- **Statement:** The system shall send a renewal reminder to the Tenant Admin a number of days before subscription expiry configured by the Platform Operator.
+- **Rationale:** Renewal is manual; tenants need a reminder.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given the reminder lead time is N days and a subscription expires on date D, when date D minus N days is reached, then the Tenant Admin receives a push and in-app reminder.
+- **Verification Method:** Test
+- **Dependencies:** FR-027, FR-028
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-032 — Grace period
+- **Statement:** The system shall keep the tenant on its expired paid plan until the end of a grace period configured by the Platform Operator.
+- **Rationale:** Avoids immediate feature loss when renewal is late.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a grace period of G days and expiry date D, when a date before D plus G is checked, then the tenant still has its paid plan.
+  - AC2: Given the same tenant without renewal, when D plus G is reached, then the tenant is on the free plan.
+- **Verification Method:** Test
+- **Dependencies:** FR-022
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-033 — Keep bookings on fallback
+- **Statement:** The system shall keep existing bookings of a tenant that falls back to the free plan.
+- **Rationale:** Customers are not penalized for the tenant's subscription status.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant with future bookings, when it falls back to the free plan, then those bookings remain active.
+  - AC2: Given the free plan disables booking, when a customer tries a new booking, then no booking action is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-026, FR-032
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-034 — Suspend discount codes on fallback
+- **Statement:** The system shall reject discount codes of a tenant for new bookings while the tenant's plan disables discount codes.
+- **Rationale:** Features follow the plan; prices already granted are honored.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant on a plan without discount codes, when a customer enters one of its valid codes for a new booking, then the system rejects the code.
+  - AC2: Given a booking created with a code before fallback, when the tenant falls back, then the booking keeps its discounted price.
+  - AC3: Given the tenant returns to a plan with discount codes before a code expires, when a customer enters that code, then the system accepts it.
+- **Verification Method:** Test
+- **Dependencies:** FR-026, FR-032
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-035 — Freeze preview credits on fallback
+- **Statement:** The system shall block new AI previews and new preview grants of a tenant while the tenant's plan disables the AI haircut preview.
+- **Rationale:** Credits are not forfeited by the downgrade itself; batches keep their own expiry.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant on a plan without AI preview, when it grants a quota or a customer requests a preview, then the system rejects the request.
+  - AC2: Given the tenant returns to a plan with AI preview before a batch expires, when a granted customer requests a preview, then the system accepts it.
+- **Verification Method:** Test
+- **Dependencies:** FR-026, FR-032
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-036 — Immediate upgrade
+- **Statement:** The system shall apply a plan upgrade immediately after payment of the prorated price difference for the remaining subscription period.
+- **Rationale:** Upgrades take effect without waiting; no refunds are needed.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant on plan A with R days remaining, when it upgrades to a higher-level plan B, then the amount due equals (price B minus price A) multiplied by R divided by the period length in days.
+  - AC2: Given that payment is confirmed, when the tenant's plan is viewed, then the plan is B with the same expiry date.
+- **Verification Method:** Test
+- **Dependencies:** FR-027, FR-028
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-003
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-037 — Downgrade at period end
+- **Statement:** The system shall apply a plan downgrade at the end of the current subscription period.
+- **Rationale:** Avoids refunds (refund support via Sham Cash is unconfirmed).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant on plan B requesting a downgrade to plan A, when the request is saved, then the plan stays B until expiry.
+  - AC2: Given the expiry date is reached and A is paid for, when the plan is viewed, then the plan is A.
+- **Verification Method:** Test
+- **Dependencies:** FR-021
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-038 — Credits on subscription and renewal
+- **Statement:** The system shall add a credit batch with the plan's included preview credits at each subscription start and renewal.
+- **Rationale:** Included credits are charged per subscription period.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given plan P includes N credits, when a tenant subscribes to or renews P, then a new credit batch of N credits with a one-calendar-month expiry is added.
+- **Verification Method:** Test
+- **Dependencies:** FR-025, FR-027, FR-028
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-039 — Manage credit packs
+- **Statement:** The system shall allow the Platform Operator to define additional preview credit packs with a credit count and a price.
+- **Rationale:** Tenants can buy credits beyond the plan's included credits.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given the Platform Operator, when they create a pack of N credits at price X, then the pack is offered to Tenant Admins.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-013
+- **History:** 2026-10-28 Proposed (PR #3)
+
+### FR-040 — Purchase credit pack
+- **Statement:** The system shall add a credit batch to the tenant when a credit-pack payment is confirmed via an enabled subscription payment method.
+- **Rationale:** Credit packs use the same payment methods as subscriptions.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a confirmed payment for a pack of N credits, when the tenant's credits are viewed, then a new batch of N credits with a one-calendar-month expiry exists.
+- **Verification Method:** Test
+- **Dependencies:** FR-029, FR-039
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-003
+- **History:** 2026-10-28 Proposed (PR #3)

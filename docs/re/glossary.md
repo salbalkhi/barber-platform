@@ -33,3 +33,6 @@
 | Unavailability Period | A period within branch working hours when a barber cannot be booked (leave, break), recorded by the Branch Manager. | SH-01 |
 | Barber Priority Order | Tenant-defined ordering of a branch's barbers used to auto-assign branch-level bookings to the highest-priority available barber. | SH-01 |
 | No-show Ban | A tenant-level, permanent (until lifted by the tenant) block on new bookings by a customer after a tenant-defined number of no-shows. | SH-01 |
+| Plan Level | Numeric rank of a plan set by the operator; higher levels rank higher in search results; the free plan ranks last. | SH-01 |
+| Grace Period | Operator-configured period after paid-subscription expiry during which the tenant keeps its paid plan before falling back to the free plan. | SH-01 |
+| Credit Pack | Operator-defined bundle of preview credits with a price, purchasable by tenants. | SH-01 |

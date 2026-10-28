@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #2)
+Last updated: 2026-10-28 (PR #3)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -26,3 +26,23 @@ Last updated: 2026-10-28 (PR #2)
 | FR-018 | Manager role restored on return | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-019 | Unassign bookings of transferred barber | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-020 | Notify customers of barber unassignment | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-021 | Manage plans | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-022 | Free plan | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-023 | Plan-feature matrix | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-024 | Contact type per plan | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-025 | Included preview credits per plan | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-026 | Feature enforcement | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-027 | Manual subscription activation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-028 | Subscription payment via Sham Cash | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-029 | Payment integration settings | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-030 | Exchange rate snapshot on payments | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-031 | Renewal reminder | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-032 | Grace period | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-033 | Keep bookings on fallback | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-034 | Suspend discount codes on fallback | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-035 | Freeze preview credits on fallback | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-036 | Immediate upgrade | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-037 | Downgrade at period end | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-038 | Credits on subscription and renewal | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-039 | Manage credit packs | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-040 | Purchase credit pack | Must | Proposed | SH-01 | — | — | — | — | — | — |
