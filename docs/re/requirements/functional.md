@@ -2267,7 +2267,7 @@
 - **Rationale:** Tenants need to know which plan and features they have (F-002 spec Q1).
 - **Source:** SH-01 (F-002 spec questions, 2026-10-28; Claude proposal approved)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a tenant on plan P, when the Tenant Admin opens the plan screen in the tenant app, then plan P's name and its enabled tenant features are shown.
   - AC2: Given a tenant on the free plan, when the Tenant Admin opens the plan screen, then the free plan and its enabled features are shown.
@@ -2275,14 +2275,14 @@
 - **Dependencies:** FR-022, FR-023
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #19)
+- **History:** 2026-10-28 Proposed (PR #19); 2026-10-28 Approved by SH-01 (PR #20)
 
 ### FR-154 — Retire paid plan
 - **Statement:** The system shall allow the Platform Operator to retire a paid plan so that it is no longer offered for new subscriptions, upgrades or renewals.
 - **Rationale:** Plans are decided after launch and may be withdrawn; plans are never deleted (F-002 spec Q4).
 - **Source:** SH-01 (F-002 spec questions, 2026-10-28; Claude proposal approved)
 - **Priority:** Should
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a retired plan, when a Tenant Admin opens the plan selection, then the retired plan is not offered.
   - AC2: Given a tenant subscribed to a plan that is then retired, when the plan is viewed during the current period, then the tenant keeps it until its expiry date.
@@ -2291,4 +2291,4 @@
 - **Dependencies:** FR-021, FR-142
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #19)
+- **History:** 2026-10-28 Proposed (PR #19); 2026-10-28 Approved by SH-01 (PR #20)

@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #19)
+Last updated: 2026-10-28 (PR #20)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -158,5 +158,5 @@ Last updated: 2026-10-28 (PR #19)
 | FR-150 | Credit batch expiry warning | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-151 | Operator report notification | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-152 | Notification preferences | Must | Proposed | SH-01 | — | — | — | — | — | — |
-| FR-153 | View current plan | Must | Proposed | SH-01 | — | — | — | — | — | — |
-| FR-154 | Retire paid plan | Should | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-153 | View current plan | Must | Approved | SH-01 | — | — | — | — | — | — |
+| FR-154 | Retire paid plan | Should | Approved | SH-01 | — | — | — | — | — | — |
