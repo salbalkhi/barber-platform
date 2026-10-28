@@ -30,3 +30,6 @@
 | Payroll Statement | Monthly statement per barber: salary + per-service commission on paid amounts + manual advances, deductions and bonuses; calculated in SYP. | SH-01 |
 | Exchange Rate Snapshot | The SYP/USD rate stored with each financial record at the moment it is created. | SH-01 |
 | SYP | The new Syrian pound (after redenomination); the platform's default currency. | SH-01 |
+| Unavailability Period | A period within branch working hours when a barber cannot be booked (leave, break), recorded by the Branch Manager. | SH-01 |
+| Barber Priority Order | Tenant-defined ordering of a branch's barbers used to auto-assign branch-level bookings to the highest-priority available barber. | SH-01 |
+| No-show Ban | A tenant-level, permanent (until lifted by the tenant) block on new bookings by a customer after a tenant-defined number of no-shows. | SH-01 |
