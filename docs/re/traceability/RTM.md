@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #16)
+Last updated: 2026-10-28 (PR #19)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -26,11 +26,11 @@ Last updated: 2026-10-28 (PR #16)
 | FR-018 | Manager role restored on return | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-019 | Unassign bookings of transferred barber | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-020 | Notify customers of barber unassignment | Must | Proposed | SH-01 | — | — | — | — | — | — |
-| FR-021 | Manage plans | Must | Approved | SH-01 | — | — | — | — | — | — |
+| FR-021 | Manage plans | Must | Approved | SH-01 | — | — | — | — | — | CR-001 |
 | FR-022 | Free plan | Must | Approved | SH-01 | — | — | — | — | — | — |
-| FR-023 | Plan-feature matrix | Must | Approved | SH-01 | — | — | — | — | — | — |
+| FR-023 | Plan-feature matrix | Must | Approved | SH-01 | — | — | — | — | — | CR-001 |
 | FR-024 | Contact type per plan | Must | Approved | SH-01 | — | — | — | — | — | — |
-| FR-025 | Included preview credits per plan | Must | Approved | SH-01 | — | — | — | — | — | — |
+| FR-025 | Included preview credits per plan | Must | Approved | SH-01 | — | — | — | — | — | CR-001 |
 | FR-026 | Feature enforcement | Must | Approved | SH-01 | — | — | — | — | — | — |
 | FR-027 | Manual subscription activation | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-028 | Subscription payment via Sham Cash | Must | Proposed | SH-01 | — | — | — | — | — | — |
@@ -147,7 +147,7 @@ Last updated: 2026-10-28 (PR #16)
 | FR-139 | Block customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-140 | Unblock customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-141 | Notify new chat message | Must | Proposed | SH-01 | — | — | — | — | — | — |
-| FR-142 | Single free plan | Must | Approved | SH-01 | — | — | — | — | — | — |
+| FR-142 | Single free plan | Must | Approved | SH-01 | — | — | — | — | — | CR-001 |
 | FR-143 | Notification delivery | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-144 | Notify new booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-145 | Notify booking confirmation | Must | Proposed | SH-01 | — | — | — | — | — | — |
@@ -158,3 +158,5 @@ Last updated: 2026-10-28 (PR #16)
 | FR-150 | Credit batch expiry warning | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-151 | Operator report notification | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-152 | Notification preferences | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-153 | View current plan | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-154 | Retire paid plan | Should | Proposed | SH-01 | — | — | — | — | — | — |

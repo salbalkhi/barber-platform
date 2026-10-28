@@ -10,7 +10,7 @@
 | ID | Feature | Requirements | Order | Depends on | Blocking open questions | Milestone | Status |
 |---|---|---|---|---|---|---|---|
 | F-001 | Tenancy & Organization | FR-001..FR-020 | 2 | F-011 | OQ-012 (FR-008, FR-011); OQ-001 (FR-003); OQ-005 (FR-020) | v1.0 | Planned |
-| F-002 | Plans & Entitlements | FR-021..FR-026, FR-142 | 3 | F-001 | — | v1.0 | Planned |
+| F-002 | Plans & Entitlements | FR-021..FR-026, FR-142, FR-153, FR-154 | 3 | F-001 | — | v1.0 | Planned |
 | F-003 | Services & Booking | FR-041..FR-065, FR-144..FR-148 | 4 | F-001, F-002 | OQ-004 (FR-065); OQ-005 (FR-060); OQ-006 (FR-046) | v1.0 | Planned |
 | F-004 | Discovery, Ratings & Favorites | FR-097..FR-115, FR-151 | 5 | F-003 | OQ-001 (FR-099, FR-103); OQ-005 (FR-113) | v1.0 | Planned |
 | F-005 | Subscriptions & Payments | FR-027..FR-040 | 6 | F-002 | OQ-003 (FR-028, FR-029, FR-036, FR-040); OQ-004 (FR-030); OQ-005 (FR-031) | v1.0 | Planned |
