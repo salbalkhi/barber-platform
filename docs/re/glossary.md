@@ -38,3 +38,4 @@
 | Credit Pack | Operator-defined bundle of preview credits with a price, purchasable by tenants. | SH-01 |
 | Booking Status | Pending (manual confirmation) → Confirmed → Completed, or Rejected, Cancelled, No-show. | SH-01 |
 | Active Booking | A booking in status Pending or Confirmed. | SH-01 |
+| Tenant Feature | A capability enabled or disabled per plan in the plan-feature matrix: prices display, booking, maps navigation, discount codes, AI haircut preview. The contact action is available on every plan; only its type (phone call or in-app chat) is set per plan. | SH-01 |

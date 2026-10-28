@@ -52,19 +52,20 @@
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ### FR-003 — Create branch
-- **Statement:** The system shall allow the Tenant Admin to create a branch with a name, a city and a location.
-- **Rationale:** A tenant owns one or more branches; the city is used by the favorites rule and the location by proximity search.
+- **Statement:** The system shall allow the Tenant Admin to create a branch with a name, a city, a location and a phone number.
+- **Rationale:** A tenant owns one or more branches; the city is used by the favorites rule, the location by proximity search and the phone number by the phone-call contact type.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
 - **Status:** Proposed
 - **Acceptance Criteria:**
-  - AC1: Given a logged-in Tenant Admin, when they create a branch with a name, city and location, then the branch appears in the tenant's branch list.
+  - AC1: Given a logged-in Tenant Admin, when they create a branch with a name, city, location and phone number, then the branch appears in the tenant's branch list.
   - AC2: Given a branch form without a city, when the Tenant Admin submits it, then the system rejects it and indicates that the city is required.
+  - AC3: Given a branch form without a phone number, when the Tenant Admin submits it, then the system rejects it and indicates that the phone number is required.
 - **Verification Method:** Test
 - **Dependencies:** FR-001
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** OQ-001
-- **History:** 2026-10-28 Proposed (PR #2)
+- **History:** 2026-10-28 Proposed (PR #2); 2026-10-28 revised after verification (PR #14)
 
 ### FR-004 — Branch working hours
 - **Statement:** The system shall allow the Tenant Admin to define weekly working hours for each branch.
@@ -317,19 +318,20 @@
 ## Plans and Subscriptions
 
 ### FR-021 — Manage plans
-- **Statement:** The system shall allow the Platform Operator to create and edit subscription plans with a name, a plan level, a price and a subscription duration.
+- **Statement:** The system shall allow the Platform Operator to create and edit subscription plans with a name, a plan level, a price in SYP and a subscription duration.
 - **Rationale:** Plans and their number are decided after launch and are configured by the operator.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given the Platform Operator, when they create a plan with name, level, price and duration, then the plan is available for assignment to tenants.
-  - AC2: Given a non-operator user, when they attempt to create or edit a plan, then the system rejects the request.
+  - AC2: Given an existing plan, when the Platform Operator changes its price, then the plan shows the new price.
+  - AC3: Given a non-operator user, when they attempt to create or edit a plan, then the system rejects the request.
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-022 — Free plan
 - **Statement:** The system shall assign the free plan to every tenant that has no active paid subscription.
@@ -339,12 +341,12 @@
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given a newly created tenant without a paid subscription, when its plan is viewed, then the plan is the free plan.
-  - AC2: Given a tenant whose grace period ended, when its plan is viewed, then the plan is the free plan.
+  - AC2: Given a tenant whose grace period ended, when its plan is viewed, then the plan is the free plan. (Verifiable after F-005.)
 - **Verification Method:** Test
-- **Dependencies:** FR-001, FR-021
+- **Dependencies:** FR-001, FR-021, FR-142
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-023 — Plan-feature matrix
 - **Statement:** The system shall allow the Platform Operator to enable or disable each tenant feature for each plan.
@@ -354,27 +356,27 @@
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given a plan and a feature, when the Platform Operator enables the feature for the plan, then the matrix shows the feature as enabled for that plan.
-  - AC2: Given the matrix, when it is viewed, then it lists at least: prices display, contact, booking, maps navigation, discount codes, AI haircut preview.
+  - AC2: Given the matrix, when it is viewed, then it lists at least: prices display, booking, maps navigation, discount codes, AI haircut preview.
 - **Verification Method:** Test
 - **Dependencies:** FR-021
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-024 — Contact type per plan
 - **Statement:** The system shall allow the Platform Operator to set, for each plan, whether customer contact is by phone call or by in-app chat.
-- **Rationale:** Example decided by SH-01: phone call for the free plan, in-app chat for paid plans.
+- **Rationale:** The contact action is available on every plan; only its type is set per plan. Example decided by SH-01: phone call for the free plan, in-app chat for paid plans.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given a plan set to phone call, when a customer views a branch of a tenant on that plan, then the contact action starts a phone call to the branch number.
-  - AC2: Given a plan set to in-app chat, when a customer views a branch of a tenant on that plan, then the contact action opens an in-app chat.
+  - AC2: Given a plan set to in-app chat, when a customer views a branch of a tenant on that plan, then the contact action opens an in-app chat. (Verifiable after F-010.)
 - **Verification Method:** Test
-- **Dependencies:** FR-023
+- **Dependencies:** FR-003, FR-023
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-025 — Included preview credits per plan
 - **Statement:** The system shall allow the Platform Operator to set the number of AI preview credits included with each plan.
@@ -2088,3 +2090,21 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #13)
+
+## Plans and Subscriptions (addendum)
+
+### FR-142 — Single free plan
+- **Statement:** The system shall provide exactly one free plan that the Platform Operator cannot delete.
+- **Rationale:** Every tenant without a paid subscription falls back to the free plan; its features are configured through the plan-feature matrix.
+- **Source:** SH-01 (verification of F-002, 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a new installation, when the plans are listed, then exactly one plan is marked free.
+  - AC2: Given the free plan, when the Platform Operator tries to delete it, then the system rejects the request.
+  - AC3: Given the free plan, when the Platform Operator changes its features in the matrix, then the change is saved.
+- **Verification Method:** Test
+- **Dependencies:** FR-021, FR-023
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #14)

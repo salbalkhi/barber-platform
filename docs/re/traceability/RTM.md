@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #13)
+Last updated: 2026-10-28 (PR #14)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -147,3 +147,4 @@ Last updated: 2026-10-28 (PR #13)
 | FR-139 | Block customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-140 | Unblock customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-141 | Notify new chat message | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-142 | Single free plan | Must | Proposed | SH-01 | — | — | — | — | — | — |
