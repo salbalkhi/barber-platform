@@ -1970,7 +1970,7 @@
 - **Dependencies:** FR-024, FR-048
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-134 — Branch-side chat recipient
 - **Statement:** The system shall deliver a branch's chats to the Branch Manager of that branch.
@@ -1986,7 +1986,7 @@
 - **Dependencies:** FR-010, FR-133
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-135 — Text-only messages
 - **Statement:** The system shall accept only text content in chat messages.
@@ -2000,7 +2000,7 @@
 - **Dependencies:** FR-133
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-136 — Chat retention setting
 - **Statement:** The system shall allow the Platform Operator to set the chat message retention period, with a default of 90 days.
@@ -2015,7 +2015,7 @@
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-137 — Delete expired chat messages
 - **Statement:** The system shall delete each chat message once it is older than the chat retention period.
@@ -2029,7 +2029,7 @@
 - **Dependencies:** FR-136
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-138 — Report chat message
 - **Statement:** The system shall allow either chat party to report a message to the Platform Operator.
@@ -2043,7 +2043,7 @@
 - **Dependencies:** FR-133
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-139 — Block customer from chat
 - **Statement:** The system shall allow the Branch Manager to block a customer from sending chat messages to their branch.
@@ -2058,7 +2058,7 @@
 - **Dependencies:** FR-134
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-140 — Unblock customer from chat
 - **Statement:** The system shall allow the Branch Manager to unblock a customer blocked from their branch's chat.
@@ -2072,7 +2072,7 @@
 - **Dependencies:** FR-139
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
 
 ### FR-141 — Notify new chat message
 - **Statement:** The system shall notify the recipient of each new chat message by push and in-app notification.
@@ -2087,4 +2087,4 @@
 - **Dependencies:** FR-134
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** OQ-005
-- **History:** 2026-10-28 Proposed (PR #12)
+- **History:** 2026-10-28 Proposed (PR #13)
