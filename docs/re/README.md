@@ -6,7 +6,7 @@ Anything not merged into the default branch here is **not approved**.
 ## Project Conventions
 - **Content language:** English
 - **Default branch:** main
-- **Requirement IDs:** `FR-001`, `NFR-001`, `UC-001`, `US-001`, `CR-001`, `ADR-001`, `OQ-001` (unique, never reused)
+- **Requirement IDs:** `FR-001`, `NFR-001`, `UC-001`, `US-001`, `CR-001`, `ADR-001`, `OQ-001`, `F-001` (unique, never reused)
 - **Requirement statement form:** `The system shall <verb> <object> [<condition>].`
 - **Priority:** MoSCoW (Must / Should / Could / Won't)
 - **Lifecycle:** Proposed → Approved → Implemented → Verified (+ Rejected, Deprecated)
@@ -24,6 +24,7 @@ Anything not merged into the default branch here is **not approved**.
 | [changes/](changes/) | Decided change requests (CR-xxx) with impact analysis |
 | [decisions/](decisions/) | Architecture/decision records (ADR-xxx) |
 | [traceability/RTM.md](traceability/RTM.md) | Requirements Traceability Matrix |
+| [features.md](features.md) | Features index (F-xxx): implementation order, intake gate for Spec Kit |
 | [open-questions.md](open-questions.md) | Open questions (OQ-xxx) |
 | [review-log.md](review-log.md) | Commit-monitoring log and last reviewed commit |
 
