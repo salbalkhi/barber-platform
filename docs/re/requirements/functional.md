@@ -975,3 +975,282 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** OQ-004
 - **History:** 2026-10-28 Proposed (PR #4)
+
+## AI Haircut Preview and Credits
+
+### FR-066 — Grant preview quota
+- **Statement:** The system shall allow the Tenant Admin to grant a preview quota to a named customer who has at least one booking at the tenant.
+- **Rationale:** The tenant chooses beneficiary customers by name; only its own past customers are selectable (privacy).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer with a past booking at the tenant, when the Tenant Admin grants a quota of Q previews, then the customer has Q previews available at that tenant.
+  - AC2: Given a customer with no booking at the tenant, when the Tenant Admin searches for them to grant a quota, then the customer is not selectable.
+- **Verification Method:** Test
+- **Dependencies:** FR-049
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-067 — Reserve credits on grant
+- **Statement:** The system shall reserve the credits of a granted quota from the tenant's credit batches in order of earliest expiry.
+- **Rationale:** Granted quotas are backed by credits at grant time; earliest-expiring credits are used first.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given batch A expiring on day 10 with 3 free credits and batch B expiring on day 20 with 5, when a quota of 4 is granted, then 3 credits are reserved from A and 1 from B.
+- **Verification Method:** Test
+- **Dependencies:** FR-066, FR-038, FR-040
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-068 — Grant limited by available credits
+- **Statement:** The system shall reject a grant whose quota exceeds the tenant's unreserved valid credits.
+- **Rationale:** The sum of granted quotas cannot exceed the available balance.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given 5 unreserved valid credits, when the Tenant Admin grants a quota of 6, then the system rejects the grant and the balance is unchanged.
+- **Verification Method:** Test
+- **Dependencies:** FR-067
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-069 — Reduce or revoke quota
+- **Statement:** The system shall return the unused part of a reduced or revoked quota to the tenant's unreserved credits.
+- **Rationale:** Unused reserved credits go back to the tenant.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer with 4 unused previews, when the Tenant Admin reduces the quota by 3, then the customer has 1 unused preview and the tenant's unreserved credits increase by 3.
+  - AC2: Given the same customer, when the quota is revoked, then the customer has 0 previews and all unused credits return to the tenant.
+- **Verification Method:** Test
+- **Dependencies:** FR-067
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-070 — Preview only within a booking
+- **Statement:** The system shall allow a customer to request a preview only for their active booking at a tenant where they have unused preview quota.
+- **Rationale:** Previews are tied to a booking (decision revised by SH-01).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer with quota at tenant T and an active booking at T, when they open the booking, then the preview action is available.
+  - AC2: Given a customer with quota at tenant T and no active booking at T, when they look for the preview action, then it is not available.
+- **Verification Method:** Test
+- **Dependencies:** FR-066, FR-049
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-071 — Consent before upload
+- **Statement:** The system shall require the customer's explicit consent, stating that the photo is sent to an external AI provider, before uploading a photo for a preview.
+- **Rationale:** Face photos are sensitive personal data.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer starting a preview, when they have not accepted the consent notice, then the photo cannot be uploaded.
+  - AC2: Given the consent notice, when it is displayed, then it states that the photo is sent to an external AI provider.
+- **Verification Method:** Test
+- **Dependencies:** FR-070
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-072 — Generate preview
+- **Statement:** The system shall generate a preview image of the customer with the selected haircut from the uploaded photo through the AI provider via the platform server.
+- **Rationale:** The server holds the provider key and controls quotas.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given an uploaded photo and a selected haircut, when the customer requests the preview, then the app displays the generated preview image.
+  - AC2: Given the request, when it is processed, then the AI provider is called by the platform server, not by the app.
+- **Verification Method:** Test
+- **Dependencies:** FR-071
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-002, OQ-010
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-073 — Deduct quota on preview
+- **Statement:** The system shall deduct one preview from the customer's quota for each generated preview.
+- **Rationale:** Each executed preview consumes one reserved credit.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer with 2 unused previews, when a preview is generated, then the customer has 1 unused preview.
+  - AC2: Given a generation failure, when the request ends, then the quota is unchanged.
+- **Verification Method:** Test
+- **Dependencies:** FR-072
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-074 — Keep preview on device
+- **Statement:** The system shall save a copy of the customer's photo and preview on the customer's device.
+- **Rationale:** The customer keeps their copy after server deletion.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a generated preview, when the server copy is deleted, then the customer still sees the photo and preview in the app on the same device.
+- **Verification Method:** Test
+- **Dependencies:** FR-072
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-075 — Preview visible to assigned barber only
+- **Statement:** The system shall show a booking's preview on the server only to the barber assigned to that booking.
+- **Rationale:** Tenant Admin, Branch Manager and Platform Operator do not see previews.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking with a preview, when the assigned barber opens the booking, then the preview is displayed.
+  - AC2: Given the same booking, when the Branch Manager, the Tenant Admin or another barber opens it, then the preview is not displayed.
+- **Verification Method:** Test
+- **Dependencies:** FR-072
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-076 — Delete preview on completion
+- **Statement:** The system shall delete a booking's photo and preview from the server when the booking is completed.
+- **Rationale:** Server retention ends with the haircut.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking with a preview, when it is marked Completed, then the photo and preview no longer exist on the server.
+- **Verification Method:** Test
+- **Dependencies:** FR-063, FR-072
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-077 — Delete preview on cancellation
+- **Statement:** The system shall delete a booking's photo and preview from the server immediately when the booking is cancelled.
+- **Rationale:** No further need once the booking is cancelled.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking with a preview, when it is cancelled by the customer or the shop, then the photo and preview no longer exist on the server.
+- **Verification Method:** Test
+- **Dependencies:** FR-058, FR-059, FR-072
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-078 — Preview retention setting
+- **Statement:** The system shall allow the Platform Operator to set the server retention period of previews after the appointment time, with a default of 24 hours.
+- **Rationale:** Covers bookings never closed (e.g. no-show).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a new installation, when the setting is viewed, then its value is 24 hours.
+  - AC2: Given the Platform Operator, when they change it to R hours, then the saved value is R.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-013
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-079 — Delete preview after retention period
+- **Statement:** The system shall delete a booking's photo and preview from the server when the retention period after the booking's appointment time has elapsed.
+- **Rationale:** Deletion happens at the earliest of completion, cancellation or the retention period.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a retention period of R hours and a booking at time T that is neither completed nor cancelled, when T plus R is reached, then the photo and preview no longer exist on the server.
+- **Verification Method:** Test
+- **Dependencies:** FR-078
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-080 — Hide preview from newly assigned barber
+- **Statement:** The system shall hide a booking's preview from a newly assigned barber until the customer consents.
+- **Rationale:** The customer decides whether a replacement barber sees the preview.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking whose barber is replaced, when the new barber opens it before customer consent, then the preview is not displayed.
+  - AC2: Given the customer refuses, when the new barber opens it, then the preview is not displayed and server deletion follows FR-076, FR-077 and FR-079.
+- **Verification Method:** Test
+- **Dependencies:** FR-061, FR-075
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-081 — Customer consent for new barber
+- **Statement:** The system shall ask the customer to allow or refuse preview access for the newly assigned barber of their booking.
+- **Rationale:** Provides the consent required by FR-080.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking with a preview whose barber is replaced, when the replacement is saved, then the customer is asked to allow or refuse.
+  - AC2: Given the customer allows, when the new barber opens the booking, then the preview is displayed.
+- **Verification Method:** Test
+- **Dependencies:** FR-080
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005, OQ-011
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-082 — Credit batch expiry date
+- **Statement:** The system shall set each credit batch's expiry to the same day of the next calendar month, or to that month's last day when that day does not exist.
+- **Rationale:** Credits are valid one calendar month from purchase or renewal.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a batch created on 13 October, when its expiry is viewed, then it is 13 November.
+  - AC2: Given a batch created on 31 January of a non-leap year, when its expiry is viewed, then it is 28 February.
+- **Verification Method:** Test
+- **Dependencies:** FR-038, FR-040
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-083 — Move quotas on batch expiry
+- **Statement:** The system shall re-reserve, when a credit batch expires, the unused granted quotas reserved from it against unreserved credits of valid batches if those credits cover all of them.
+- **Rationale:** Customers keep their quotas while the tenant has valid credits.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given 3 unused granted previews reserved on an expiring batch and 5 unreserved valid credits, when the batch expires, then the 3 previews remain available and the unreserved valid credits are 2.
+- **Verification Method:** Test
+- **Dependencies:** FR-067, FR-082
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
+
+### FR-084 — Equal split of quotas on insufficient credits
+- **Statement:** The system shall give each affected customer, when valid unreserved credits do not cover all quotas of an expired batch, the lower of their unused quota and the available credits divided equally among affected customers and rounded down.
+- **Rationale:** Equal distribution decided by SH-01; the remainder stays with the tenant for manual granting.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given affected customers with unused quotas 4, 2 and 1 and 5 available credits, when the batch expires, then each customer keeps 1 preview and the tenant keeps 2 unreserved credits.
+- **Verification Method:** Test
+- **Dependencies:** FR-083
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #5)
