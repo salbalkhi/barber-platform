@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #5)
+Last updated: 2026-10-28 (PR #6)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -90,3 +90,15 @@ Last updated: 2026-10-28 (PR #5)
 | FR-082 | Credit batch expiry date | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-083 | Move quotas on batch expiry | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-084 | Equal split of quotas on insufficient credits | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-085 | Create discount code | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-086 | Code audience | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-087 | Notify targeted audience | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-088 | Apply code at booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-089 | One code per booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-090 | Reject expired code | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-091 | Reject code outside audience | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-092 | Code usage limits | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-093 | Eligible services and branches | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-094 | Fixed discount floor | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-095 | Count usage at booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-096 | Release usage on cancellation | Must | Proposed | SH-01 | — | — | — | — | — | — |

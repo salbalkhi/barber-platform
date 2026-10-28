@@ -1254,3 +1254,178 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #5)
+
+## Discount Codes
+
+### FR-085 — Create discount code
+- **Statement:** The system shall allow the Tenant Admin to create a discount code with a type (percentage or fixed SYP amount), a value, an expiry date, a total usage limit, a per-customer usage limit, eligible services, eligible branches and an audience.
+- **Rationale:** Promotions are discount codes whose properties are set by the tenant.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Tenant Admin, when they save a code with all properties, then the code is listed with those properties.
+  - AC2: Given a Branch Manager, when they attempt to create a code, then the system rejects the request.
+- **Verification Method:** Test
+- **Dependencies:** FR-041, FR-003
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-086 — Code audience
+- **Statement:** The system shall restrict each discount code to one audience: all customers, the favorite customers of a selected barber, or named customers who have at least one booking at the tenant.
+- **Rationale:** Three audience types; branch/service restrictions are code properties.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given the audience options, when the Tenant Admin creates a code, then exactly these three options are offered.
+  - AC2: Given the named-customers option, when the Tenant Admin searches for a customer without a booking at the tenant, then the customer is not selectable.
+- **Verification Method:** Test
+- **Dependencies:** FR-085
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-087 — Notify targeted audience
+- **Statement:** The system shall notify each member of a code's audience when the code targets a barber's favorite customers or named customers.
+- **Rationale:** Targeted customers need to learn about their code.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a code for named customers A and B, when it is created, then A and B receive a push and in-app notification with the code.
+  - AC2: Given a code for all customers, when it is created, then no notification is sent.
+- **Verification Method:** Test
+- **Dependencies:** FR-086
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005, OQ-011
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-088 — Apply code at booking
+- **Statement:** The system shall display the discounted price when a customer enters a valid discount code during booking.
+- **Rationale:** The customer enters the code at booking and sees the price after discount.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a valid 10% code and eligible services totalling 10,000 SYP, when the customer enters it, then the displayed price is 9,000 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-049, FR-085
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-089 — One code per booking
+- **Statement:** The system shall accept at most one discount code per booking.
+- **Rationale:** Keeps pricing unambiguous.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking with an applied code, when the customer enters a second code, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-088
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-090 — Reject expired code
+- **Statement:** The system shall reject a discount code after its expiry date.
+- **Rationale:** Expiry is a code property.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a code expired yesterday, when a customer enters it, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-088
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-091 — Reject code outside audience
+- **Statement:** The system shall reject a discount code entered by a customer outside the code's audience.
+- **Rationale:** Audience restricts who may use the code.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a code for barber X's favorite customers, when a customer not in that list enters it, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-086, FR-088
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-092 — Code usage limits
+- **Statement:** The system shall reject a discount code whose total usage limit or whose per-customer usage limit has been reached.
+- **Rationale:** Usage limits are code properties.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a total limit of 10 and 10 uses, when a customer enters the code, then the system rejects it.
+  - AC2: Given a per-customer limit of 1 and a customer who used it once, when that customer enters it again, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-088, FR-095
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-093 — Eligible services and branches
+- **Statement:** The system shall apply a discount code only to the booking's services that are eligible for the code at a branch that is eligible for the code.
+- **Rationale:** Services and branches are code properties.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a code eligible only for service A and a booking with services A and B, when it is applied, then only A's price is discounted.
+  - AC2: Given a code not eligible for branch X, when entered for a booking at branch X, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-088
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-094 — Fixed discount floor
+- **Statement:** The system shall limit a fixed-amount discount to the total price of the eligible services.
+- **Rationale:** The discounted price cannot be negative.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a fixed discount of 5,000 SYP and eligible services totalling 3,000 SYP, when it is applied, then the discounted price of those services is 0 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-093
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-095 — Count usage at booking
+- **Statement:** The system shall count one use of a discount code when a booking with that code is created.
+- **Rationale:** Prevents the same code from being reserved beyond its limits.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a code with 0 uses, when a booking with the code is created, then the code shows 1 use.
+- **Verification Method:** Test
+- **Dependencies:** FR-088
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
+
+### FR-096 — Release usage on cancellation
+- **Statement:** The system shall release the counted use of a discount code when its booking is cancelled or rejected.
+- **Rationale:** Customers do not lose a use for a booking that did not happen.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking that counted one use, when it is cancelled or rejected, then the code's use count decreases by one.
+- **Verification Method:** Test
+- **Dependencies:** FR-095, FR-057, FR-058, FR-059
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #6)
