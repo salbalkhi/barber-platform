@@ -33,7 +33,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ### FR-002 — Reset Tenant Admin password
@@ -48,7 +48,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-001
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ### FR-003 — Create branch
@@ -328,7 +328,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-022 — Free plan
@@ -417,7 +417,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-021
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-028 — Subscription payment via Sham Cash
@@ -446,7 +446,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-027, FR-028
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-003, OQ-013
+- **Open Questions:** OQ-003
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-030 — Exchange rate snapshot on payments
@@ -593,7 +593,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-040 — Purchase credit pack
@@ -1165,7 +1165,7 @@
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-013
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #5)
 
 ### FR-079 — Delete preview after retention period
@@ -1429,3 +1429,528 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #6)
+
+## Search, Ratings and Favorites
+
+### FR-097 — Search by name
+- **Statement:** The system shall allow users to search branches and barbers by name.
+- **Rationale:** Name is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch named 'Al Noor', when a user searches 'Noor', then that branch appears in the results.
+- **Verification Method:** Test
+- **Dependencies:** FR-003, FR-005
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-098 — Search by service
+- **Statement:** The system shall allow users to search branches by an offered service.
+- **Rationale:** Service is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given branch X with active service 'Beard trim' and branch Y without it, when a user searches 'Beard trim', then X appears and Y does not.
+- **Verification Method:** Test
+- **Dependencies:** FR-043
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-099 — Sort by proximity
+- **Statement:** The system shall allow users to sort search results by distance from their current location.
+- **Rationale:** Proximity is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given location permission is granted and two branches at 1 km and 5 km, when sorting by proximity within the same plan level, then the 1 km branch is listed first.
+- **Verification Method:** Test
+- **Dependencies:** FR-003
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-001
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-100 — Sort by rating
+- **Statement:** The system shall allow users to sort search results by average rating.
+- **Rationale:** Rating is one of the four search criteria.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given two branches of the same plan level rated 4.5 and 3.9, when sorting by rating, then the 4.5 branch is listed first.
+- **Verification Method:** Test
+- **Dependencies:** FR-104
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-101 — Plan-level ordering
+- **Statement:** The system shall order search results by tenant plan level, from highest to lowest with the free plan last, before applying the user's chosen criterion.
+- **Rationale:** Paid plans rank higher; the free plan always appears after all paid plans.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a free-plan branch at 1 km and a paid-plan branch at 5 km, when sorting by proximity, then the paid-plan branch is listed first.
+  - AC2: Given two paid plans of levels 2 and 1, when results are listed, then all level-2 branches precede all level-1 branches.
+- **Verification Method:** Test
+- **Dependencies:** FR-021, FR-022
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-102 — Display ratings in results
+- **Statement:** The system shall display the average rating and the number of ratings of each branch and barber in search results and on their pages.
+- **Rationale:** Only the average and count are public.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch with ratings 5 and 4, when it appears in results, then it shows 4.5 and 2 ratings.
+- **Verification Method:** Test
+- **Dependencies:** FR-104
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-103 — Maps navigation
+- **Statement:** The system shall open driving directions to a branch in Google Maps when the customer selects navigation and the tenant's plan enables maps navigation.
+- **Rationale:** Paid feature: open maps to reach the branch by car.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a plan with maps navigation enabled, when the customer taps navigation, then Google Maps opens with driving directions to the branch location.
+  - AC2: Given a plan without it, when the branch page is shown, then no navigation action is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-003, FR-026
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-001
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-104 — Rate barber
+- **Statement:** The system shall allow a customer to rate the barber of their completed booking from 1 to 5 stars with an optional comment.
+- **Rationale:** Barbers are rated after completed bookings.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a completed booking, when the customer submits 4 stars without a comment, then the rating is saved for the barber.
+  - AC2: Given a booking that is not completed, when the customer tries to rate, then no rating action is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-105 — Rate branch
+- **Statement:** The system shall allow a customer to rate the branch of their completed booking from 1 to 5 stars with an optional comment.
+- **Rationale:** Branches are rated after completed bookings.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a completed booking, when the customer submits 5 stars with a comment, then the rating is saved for the branch.
+- **Verification Method:** Test
+- **Dependencies:** FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-106 — One rating per completed booking
+- **Statement:** The system shall accept at most one barber rating and one branch rating per completed booking.
+- **Rationale:** One rating per completed booking.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a completed booking already rated, when the customer tries to rate it again, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-104, FR-105
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-107 — Rating comment visibility
+- **Statement:** The system shall show rating comments only to the Tenant Admin, to the Branch Manager for their branch and its barbers, and to the barber for comments about them.
+- **Rationale:** Comments are not public.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a comment about barber B of branch X, when B, the manager of X or the Tenant Admin opens ratings, then the comment is shown.
+  - AC2: Given the same comment, when a customer or a manager of another branch views ratings, then the comment is not shown.
+- **Verification Method:** Test
+- **Dependencies:** FR-104, FR-105
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-108 — Report abusive comment
+- **Statement:** The system shall allow the Tenant Admin or the rated barber to report a rating comment to the Platform Operator.
+- **Rationale:** Abusive comments reach the operator through reports.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a comment about barber B, when B reports it, then the report appears in the Platform Operator's report list.
+- **Verification Method:** Test
+- **Dependencies:** FR-107
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-109 — Hide reported comment
+- **Statement:** The system shall allow the Platform Operator to hide a reported rating comment while keeping its star rating.
+- **Rationale:** The operator moderates abusive comments; stars remain part of the average.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a reported comment, when the Platform Operator hides it, then the comment is no longer shown to anyone and the rating's stars still count in the average.
+- **Verification Method:** Test
+- **Dependencies:** FR-108
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-110 — Favorite barber
+- **Statement:** The system shall allow a customer to add a barber to and remove a barber from their favorites.
+- **Rationale:** Customers choose their favorite barber.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber, when the customer adds them to favorites, then the barber appears in the customer's favorites.
+  - AC2: Given a favorite barber, when the customer removes them, then the barber no longer appears in the customer's favorites.
+- **Verification Method:** Test
+- **Dependencies:** FR-048
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-111 — Customer QR code
+- **Statement:** The system shall display a QR code identifying the customer in the customer app.
+- **Rationale:** Barbers add favorite customers only by scanning this QR code (no customer directory search).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a logged-in customer, when they open their QR code, then a QR code identifying their account is displayed.
+- **Verification Method:** Test
+- **Dependencies:** FR-046
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-112 — Favorite customer by QR
+- **Statement:** The system shall allow a barber to add a customer to the barber's favorite customers only by scanning the customer's QR code.
+- **Rationale:** Two-way favorites without exposing the customer directory.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer's QR code, when the barber scans it, then the customer appears in the barber's favorite customers.
+  - AC2: Given the barber app, when the barber looks for a way to search customers by name or phone, then none exists.
+- **Verification Method:** Test
+- **Dependencies:** FR-111
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-113 — Notify customer added as favorite
+- **Statement:** The system shall notify a customer when a barber adds them to the barber's favorite customers.
+- **Rationale:** The customer is informed and can refuse.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber adds a customer, when the addition is saved, then the customer receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-112
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005, OQ-011
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-114 — Remove self from barber favorites
+- **Statement:** The system shall allow a customer to remove themselves from a barber's favorite customers.
+- **Rationale:** The customer can refuse the addition or leave later.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer in barber B's favorites, when the customer removes themselves, then the customer no longer appears in B's favorite customers.
+- **Verification Method:** Test
+- **Dependencies:** FR-113
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+### FR-115 — Favorite barber city rule
+- **Statement:** The system shall show a favorite barber to a customer only while the barber's current branch is in the city of the branch where the favorite was created.
+- **Rationale:** Favorites follow a transferred barber within the same city and are kept but hidden across cities.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a favorite created at a branch in Damascus, when the barber is transferred to another Damascus branch, then the favorite is shown with the new branch.
+  - AC2: Given the barber is transferred to an Aleppo branch, when the customer opens favorites, then the barber is not shown.
+  - AC3: Given the barber returns to a Damascus branch, when the customer opens favorites, then the barber is shown again.
+- **Verification Method:** Test
+- **Dependencies:** FR-003, FR-015, FR-110
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #7)
+
+## Supplies
+
+### FR-116 — Supply catalog
+- **Statement:** The system shall allow the Tenant Admin to manage a supply catalog where each item has a name and a unit of measure.
+- **Rationale:** Supply requests use tenant-defined catalog items.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Tenant Admin, when they add an item 'Shaving foam' with unit 'can', then the item is selectable in supply requests of all branches.
+- **Verification Method:** Test
+- **Dependencies:** FR-001
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-117 — Create supply request
+- **Statement:** The system shall allow the Branch Manager to submit a supply request for their branch containing catalog items with quantities.
+- **Rationale:** Branch managers request supplies from the tenant.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Branch Manager, when they submit a request with two catalog items and quantities, then the request exists with status Submitted.
+  - AC2: Given a request without items, when it is submitted, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-012, FR-116
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-118 — Free supply items
+- **Statement:** The system shall allow the Branch Manager to add items not in the catalog to a supply request with a name and a quantity.
+- **Rationale:** Needs outside the catalog are allowed.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a supply request, when the Branch Manager adds a free item 'Mirror cleaner' with quantity 2, then the request contains that item.
+- **Verification Method:** Test
+- **Dependencies:** FR-117
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-119 — Notify tenant of supply request
+- **Statement:** The system shall notify the Tenant Admin when a supply request is submitted.
+- **Rationale:** The tenant acts on requests.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a submitted request, when it is saved, then the Tenant Admin receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-117
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-120 — Approve or reject supply request
+- **Statement:** The system shall allow the Tenant Admin to approve or reject a submitted supply request, requiring a reason for rejection.
+- **Rationale:** Status workflow: Submitted → Approved / Rejected (with reason).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Submitted request, when the Tenant Admin approves it, then its status is Approved.
+  - AC2: Given a Submitted request, when the Tenant Admin rejects it without a reason, then the system rejects the action.
+- **Verification Method:** Test
+- **Dependencies:** FR-117
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-121 — Complete supply request with costs
+- **Statement:** The system shall allow the Tenant Admin to mark an approved supply request as Purchased/Delivered, requiring a cost amount and currency for each item.
+- **Rationale:** Costs per item feed the branch expense report.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given an Approved request with two items, when the Tenant Admin completes it with a cost and currency for each item, then its status is Purchased/Delivered.
+  - AC2: Given a missing item cost, when completion is submitted, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-120
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-122 — Notify branch manager of supply status
+- **Statement:** The system shall notify the requesting Branch Manager when the status of their supply request changes.
+- **Rationale:** Managers follow their requests.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a request changes from Submitted to Approved, when the change is saved, then the Branch Manager receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-120, FR-121
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-123 — Exchange rate snapshot on supply costs
+- **Statement:** The system shall store the SYP/USD exchange rate in effect with each recorded supply item cost.
+- **Rationale:** Expense reports remain correct after rate changes.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a cost recorded at rate X, when the rate later changes, then the record still shows rate X.
+- **Verification Method:** Test
+- **Dependencies:** FR-121
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-004
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-124 — Branch supply expense report
+- **Statement:** The system shall provide the Tenant Admin with a supply expense report per branch for a selected period in SYP.
+- **Rationale:** Tenant follows branch costs.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given two completed requests for branch X in October totalling 50,000 SYP, when the Tenant Admin views branch X's report for October, then the total is 50,000 SYP.
+  - AC2: Given a USD cost, when it is reported, then it is converted to SYP at its stored rate.
+- **Verification Method:** Test
+- **Dependencies:** FR-121, FR-123
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+
+## Payroll and Reports
+
+### FR-125 — Barber salary
+- **Statement:** The system shall allow the Tenant Admin to set a monthly salary in SYP for each barber.
+- **Rationale:** Barbers earn a salary plus commission.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber, when the Tenant Admin sets a salary of S SYP, then S appears as the salary line of the barber's next payroll statement.
+- **Verification Method:** Test
+- **Dependencies:** FR-005
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-126 — Commission rate snapshot
+- **Statement:** The system shall store with each completed booking service the commission rate in effect at completion.
+- **Rationale:** Rate changes do not alter past commissions.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a service with rate 30% at completion, when the Tenant Admin later changes it to 40%, then that completed service still uses 30%.
+- **Verification Method:** Test
+- **Dependencies:** FR-041, FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-127 — Commission calculation
+- **Statement:** The system shall calculate a barber's commission for each completed service as the service's paid amount in SYP multiplied by its stored commission rate.
+- **Rationale:** Commission is per service on the paid amount after discount.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a service paid 10,000 SYP with rate 30%, when commission is calculated, then it equals 3,000 SYP.
+  - AC2: Given a service paid 10 USD at a stored rate of 13,000 SYP/USD and rate 30%, when commission is calculated, then it equals 39,000 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-064, FR-065, FR-126
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-128 — Payroll manual items
+- **Statement:** The system shall allow the Tenant Admin to add advances, deductions and bonuses with an amount in SYP to a barber's payroll statement.
+- **Rationale:** Statements include manual items.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber's statement for October, when the Tenant Admin adds an advance of 20,000 SYP, then the statement lists it and the net amount decreases by 20,000 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-129
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-129 — Monthly payroll statement
+- **Statement:** The system shall produce for each barber a payroll statement per calendar month with salary, total commission, manual items and net amount.
+- **Rationale:** Monthly statement per barber.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a barber with salary 500,000, commission 150,000, a bonus of 50,000 and a deduction of 20,000 in October, when the October statement is viewed, then the net amount is 680,000 SYP.
+- **Verification Method:** Test
+- **Dependencies:** FR-125, FR-127
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-130 — Payroll statement visibility
+- **Statement:** The system shall show payroll statements only to the Tenant Admin and to the barber concerned.
+- **Rationale:** Branch Managers do not see statements.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given barber B's statement, when B opens payroll, then B sees only B's statements.
+  - AC2: Given a Branch Manager, when they look for payroll statements, then none are available.
+- **Verification Method:** Test
+- **Dependencies:** FR-129
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-131 — Attribute services to performing branch
+- **Statement:** The system shall attribute each completed service to the branch where it was performed.
+- **Rationale:** Services by temporarily transferred barbers count for the branch where they were performed.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given barber B of branch X temporarily transferred to branch Y, when B completes a service at Y, then the service counts in branch Y's reports.
+- **Verification Method:** Test
+- **Dependencies:** FR-015, FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)
+
+### FR-132 — Branch activity report
+- **Statement:** The system shall provide the Branch Manager and the Tenant Admin with the number of completed services per barber of a branch for a selected period.
+- **Rationale:** Branch managers follow employee activity.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given barber B completed 12 services at branch X in October, when the manager of X views October's report, then B shows 12.
+- **Verification Method:** Test
+- **Dependencies:** FR-012, FR-131
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #8)

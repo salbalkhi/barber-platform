@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #6)
+Last updated: 2026-10-28 (PR #8)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -102,3 +102,39 @@ Last updated: 2026-10-28 (PR #6)
 | FR-094 | Fixed discount floor | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-095 | Count usage at booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-096 | Release usage on cancellation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-097 | Search by name | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-098 | Search by service | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-099 | Sort by proximity | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-100 | Sort by rating | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-101 | Plan-level ordering | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-102 | Display ratings in results | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-103 | Maps navigation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-104 | Rate barber | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-105 | Rate branch | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-106 | One rating per completed booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-107 | Rating comment visibility | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-108 | Report abusive comment | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-109 | Hide reported comment | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-110 | Favorite barber | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-111 | Customer QR code | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-112 | Favorite customer by QR | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-113 | Notify customer added as favorite | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-114 | Remove self from barber favorites | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-115 | Favorite barber city rule | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-116 | Supply catalog | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-117 | Create supply request | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-118 | Free supply items | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-119 | Notify tenant of supply request | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-120 | Approve or reject supply request | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-121 | Complete supply request with costs | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-122 | Notify branch manager of supply status | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-123 | Exchange rate snapshot on supply costs | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-124 | Branch supply expense report | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-125 | Barber salary | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-126 | Commission rate snapshot | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-127 | Commission calculation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-128 | Payroll manual items | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-129 | Monthly payroll statement | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-130 | Payroll statement visibility | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-131 | Attribute services to performing branch | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-132 | Branch activity report | Must | Proposed | SH-01 | — | — | — | — | — | — |
