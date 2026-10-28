@@ -318,7 +318,7 @@
 ## Plans and Subscriptions
 
 ### FR-021 — Manage plans
-- **Statement:** The system shall allow the Platform Operator to create and edit subscription plans with a name, a plan level, a price in SYP and a subscription duration.
+- **Statement:** The system shall allow the Platform Operator to create and edit paid subscription plans with a name, a unique plan level, a price in SYP and a subscription duration.
 - **Rationale:** Plans and their number are decided after launch and are configured by the operator.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
@@ -327,11 +327,13 @@
   - AC1: Given the Platform Operator, when they create a plan with name, level, price and duration, then the plan is available for assignment to tenants.
   - AC2: Given an existing plan, when the Platform Operator changes its price, then the plan shows the new price.
   - AC3: Given a non-operator user, when they attempt to create or edit a plan, then the system rejects the request.
+  - AC4: Given an existing plan with level L, when the Platform Operator saves another plan with level L, then the system rejects it.
+  - AC5: Given a plan whose price or duration is edited, when the change is saved, then tenants in a current subscription period keep their price and expiry date, and the new values apply to new subscriptions and renewals.
 - **Verification Method:** Test
 - **Dependencies:** none
-- **Trace:** UC: — | ADR: — | CR: —
+- **Trace:** UC: — | ADR: — | CR: CR-001
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16); 2026-10-28 changed by CR-001 (#18, PR #19)
 
 ### FR-022 — Free plan
 - **Statement:** The system shall assign the free plan to every tenant that has no active paid subscription.
@@ -356,12 +358,12 @@
 - **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a plan and a feature, when the Platform Operator enables the feature for the plan, then the matrix shows the feature as enabled for that plan.
-  - AC2: Given the matrix, when it is viewed, then it lists at least: prices display, booking, maps navigation, discount codes, AI haircut preview.
+  - AC2: Given the matrix, when it is viewed, then it lists exactly: prices display, booking, maps navigation, discount codes, AI haircut preview.
 - **Verification Method:** Test
 - **Dependencies:** FR-021
-- **Trace:** UC: — | ADR: — | CR: —
+- **Trace:** UC: — | ADR: — | CR: CR-001
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16); 2026-10-28 changed by CR-001 (#18, PR #19)
 
 ### FR-024 — Contact type per plan
 - **Statement:** The system shall allow the Platform Operator to set, for each plan, whether customer contact is by phone call or by in-app chat.
@@ -386,11 +388,12 @@
 - **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a plan, when the Platform Operator sets its included credits to N, then the matrix shows N for that plan.
+  - AC2: Given a plan with the AI haircut preview disabled, when the Platform Operator views or edits its included credits, then the value is 0 and cannot be changed.
 - **Verification Method:** Test
 - **Dependencies:** FR-023
-- **Trace:** UC: — | ADR: — | CR: —
+- **Trace:** UC: — | ADR: — | CR: CR-001
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 Approved by SH-01 (PR #16)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 Approved by SH-01 (PR #16); 2026-10-28 changed by CR-001 (#18, PR #19)
 
 ### FR-026 — Feature enforcement
 - **Statement:** The system shall provide a tenant feature to the tenant and its customers only when the feature is enabled for the tenant's current plan.
@@ -1268,11 +1271,12 @@
 - **Acceptance Criteria:**
   - AC1: Given a Tenant Admin, when they save a code with all properties, then the code is listed with those properties.
   - AC2: Given a Branch Manager, when they attempt to create a code, then the system rejects the request.
+  - AC3: Given a tenant whose plan disables discount codes, when the Tenant Admin tries to create a code, then the system rejects the request.
 - **Verification Method:** Test
 - **Dependencies:** FR-041, FR-003
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #6)
+- **History:** 2026-10-28 Proposed (PR #6); 2026-10-28 AC3 added (F-002 spec Q8, PR #19)
 
 ### FR-086 — Code audience
 - **Statement:** The system shall restrict each discount code to one audience: all customers, the favorite customers of a selected barber, or named customers who have at least one booking at the tenant.
@@ -2094,7 +2098,7 @@
 ## Plans and Subscriptions (addendum)
 
 ### FR-142 — Single free plan
-- **Statement:** The system shall provide exactly one free plan that the Platform Operator cannot delete.
+- **Statement:** The system shall provide exactly one predefined free plan with a price of 0 SYP, no subscription duration and the lowest plan level, which the Platform Operator cannot delete.
 - **Rationale:** Every tenant without a paid subscription falls back to the free plan; its features are configured through the plan-feature matrix.
 - **Source:** SH-01 (verification of F-002, 2026-10-28; Claude proposal approved)
 - **Priority:** Must
@@ -2103,11 +2107,13 @@
   - AC1: Given a new installation, when the plans are listed, then exactly one plan is marked free.
   - AC2: Given the free plan, when the Platform Operator tries to delete it, then the system rejects the request.
   - AC3: Given the free plan, when the Platform Operator changes its features in the matrix, then the change is saved.
+  - AC4: Given the free plan, when the Platform Operator edits it, then only its name and its plan-feature matrix entries can be changed.
+  - AC5: Given the free plan, when the Platform Operator saves a paid plan with a level lower than or equal to the free plan's level, then the system rejects it.
 - **Verification Method:** Test
 - **Dependencies:** FR-021, FR-023
-- **Trace:** UC: — | ADR: — | CR: —
+- **Trace:** UC: — | ADR: — | CR: CR-001
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
+- **History:** 2026-10-28 Proposed (PR #14); 2026-10-28 Approved by SH-01 (PR #16); 2026-10-28 changed by CR-001 (#18, PR #19)
 
 ## Notifications
 
@@ -2255,3 +2261,34 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-153 — View current plan
+- **Statement:** The system shall display to the Tenant Admin the tenant's current plan and the tenant features it enables.
+- **Rationale:** Tenants need to know which plan and features they have (F-002 spec Q1).
+- **Source:** SH-01 (F-002 spec questions, 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a tenant on plan P, when the Tenant Admin opens the plan screen in the tenant app, then plan P's name and its enabled tenant features are shown.
+  - AC2: Given a tenant on the free plan, when the Tenant Admin opens the plan screen, then the free plan and its enabled features are shown.
+- **Verification Method:** Test
+- **Dependencies:** FR-022, FR-023
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #19)
+
+### FR-154 — Retire paid plan
+- **Statement:** The system shall allow the Platform Operator to retire a paid plan so that it is no longer offered for new subscriptions, upgrades or renewals.
+- **Rationale:** Plans are decided after launch and may be withdrawn; plans are never deleted (F-002 spec Q4).
+- **Source:** SH-01 (F-002 spec questions, 2026-10-28; Claude proposal approved)
+- **Priority:** Should
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a retired plan, when a Tenant Admin opens the plan selection, then the retired plan is not offered.
+  - AC2: Given a tenant subscribed to a plan that is then retired, when the plan is viewed during the current period, then the tenant keeps it until its expiry date.
+  - AC3: Given the free plan, when the Platform Operator tries to retire it, then the system rejects the request.
+- **Verification Method:** Test
+- **Dependencies:** FR-021, FR-142
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #19)
