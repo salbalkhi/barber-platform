@@ -373,7 +373,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-023
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-014
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #3)
 
 ### FR-025 — Included preview credits per plan
@@ -1954,3 +1954,137 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #8)
+
+## In-app Chat
+
+### FR-133 — Chat with branch
+- **Statement:** The system shall allow a logged-in customer to open a text chat with a branch whose tenant plan sets the contact type to in-app chat.
+- **Rationale:** Customers contact the branch, not individual barbers; no booking is required.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch on a plan with in-app chat, when a logged-in customer without any booking taps contact, then a chat with that branch opens.
+  - AC2: Given a branch on a plan with phone call, when the customer views it, then no chat action is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-024, FR-048
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-134 — Branch-side chat recipient
+- **Statement:** The system shall deliver a branch's chats to the Branch Manager of that branch.
+- **Rationale:** The Branch Manager answers for the branch; without a manager the Tenant Admin answers (FR-010).
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given branch X with a manager, when a customer sends a message to X, then the manager of X sees it in the tenant app.
+  - AC2: Given branch X without a manager, when a customer sends a message to X, then the Tenant Admin sees it.
+  - AC3: Given a barber of X who is not its manager, when they open the tenant app, then they cannot see X's chats.
+- **Verification Method:** Test
+- **Dependencies:** FR-010, FR-133
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-135 — Text-only messages
+- **Statement:** The system shall accept only text content in chat messages.
+- **Rationale:** Avoids storing customer images in chat.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a chat, when a user tries to attach an image or file, then no attachment option is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-133
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-136 — Chat retention setting
+- **Statement:** The system shall allow the Platform Operator to set the chat message retention period, with a default of 90 days.
+- **Rationale:** Messages are not kept indefinitely.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a new installation, when the setting is viewed, then its value is 90 days.
+  - AC2: Given the Platform Operator, when they set it to N days, then the saved value is N.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-137 — Delete expired chat messages
+- **Statement:** The system shall delete each chat message once it is older than the chat retention period.
+- **Rationale:** Applies the retention setting.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a retention period of 90 days, when a message becomes 91 days old, then it is no longer visible to either party and no longer stored.
+- **Verification Method:** Test
+- **Dependencies:** FR-136
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-138 — Report chat message
+- **Statement:** The system shall allow either chat party to report a message to the Platform Operator.
+- **Rationale:** Abusive messages reach the operator, as for rating comments.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a received message, when the recipient reports it, then the report appears in the Platform Operator's report list with the message text.
+- **Verification Method:** Test
+- **Dependencies:** FR-133
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-139 — Block customer from chat
+- **Statement:** The system shall allow the Branch Manager to block a customer from sending chat messages to their branch.
+- **Rationale:** The shop can stop abusive customers.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a blocked customer, when they try to send a message to that branch, then the system rejects it.
+  - AC2: Given the same customer, when they message another branch, then the block does not apply.
+- **Verification Method:** Test
+- **Dependencies:** FR-134
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-140 — Unblock customer from chat
+- **Statement:** The system shall allow the Branch Manager to unblock a customer blocked from their branch's chat.
+- **Rationale:** Blocks are reversible.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a blocked customer, when the Branch Manager unblocks them, then the customer can send messages to that branch again.
+- **Verification Method:** Test
+- **Dependencies:** FR-139
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #12)
+
+### FR-141 — Notify new chat message
+- **Statement:** The system shall notify the recipient of each new chat message by push and in-app notification.
+- **Rationale:** Parties learn about new messages.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer sends a message to branch X, when it is saved, then the branch-side recipient receives a push and in-app notification.
+  - AC2: Given the branch replies, when the reply is saved, then the customer receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-134
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #12)

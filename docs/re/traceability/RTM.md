@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #8)
+Last updated: 2026-10-28 (PR #12)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -138,3 +138,12 @@ Last updated: 2026-10-28 (PR #8)
 | FR-130 | Payroll statement visibility | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-131 | Attribute services to performing branch | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-132 | Branch activity report | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-133 | Chat with branch | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-134 | Branch-side chat recipient | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-135 | Text-only messages | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-136 | Chat retention setting | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-137 | Delete expired chat messages | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-138 | Report chat message | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-139 | Block customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-140 | Unblock customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-141 | Notify new chat message | Must | Proposed | SH-01 | — | — | — | — | — | — |
