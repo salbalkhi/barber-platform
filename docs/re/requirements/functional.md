@@ -322,7 +322,7 @@
 - **Rationale:** Plans and their number are decided after launch and are configured by the operator.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given the Platform Operator, when they create a plan with name, level, price and duration, then the plan is available for assignment to tenants.
   - AC2: Given an existing plan, when the Platform Operator changes its price, then the plan shows the new price.
@@ -331,14 +331,14 @@
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
 
 ### FR-022 — Free plan
 - **Statement:** The system shall assign the free plan to every tenant that has no active paid subscription.
 - **Rationale:** The free plan grants presence on the platform with the lowest search priority.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a newly created tenant without a paid subscription, when its plan is viewed, then the plan is the free plan.
   - AC2: Given a tenant whose grace period ended, when its plan is viewed, then the plan is the free plan. (Verifiable after F-005.)
@@ -346,14 +346,14 @@
 - **Dependencies:** FR-001, FR-021, FR-142
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
 
 ### FR-023 — Plan-feature matrix
 - **Statement:** The system shall allow the Platform Operator to enable or disable each tenant feature for each plan.
 - **Rationale:** Feature sets per plan are configurable without an app release (resolves the contact-feature conflict).
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a plan and a feature, when the Platform Operator enables the feature for the plan, then the matrix shows the feature as enabled for that plan.
   - AC2: Given the matrix, when it is viewed, then it lists at least: prices display, booking, maps navigation, discount codes, AI haircut preview.
@@ -361,14 +361,14 @@
 - **Dependencies:** FR-021
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
 
 ### FR-024 — Contact type per plan
 - **Statement:** The system shall allow the Platform Operator to set, for each plan, whether customer contact is by phone call or by in-app chat.
 - **Rationale:** The contact action is available on every plan; only its type is set per plan. Example decided by SH-01: phone call for the free plan, in-app chat for paid plans.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a plan set to phone call, when a customer views a branch of a tenant on that plan, then the contact action starts a phone call to the branch number.
   - AC2: Given a plan set to in-app chat, when a customer views a branch of a tenant on that plan, then the contact action opens an in-app chat. (Verifiable after F-010.)
@@ -376,28 +376,28 @@
 - **Dependencies:** FR-003, FR-023
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
 
 ### FR-025 — Included preview credits per plan
 - **Statement:** The system shall allow the Platform Operator to set the number of AI preview credits included with each plan.
 - **Rationale:** Plans come pre-charged with preview credits.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a plan, when the Platform Operator sets its included credits to N, then the matrix shows N for that plan.
 - **Verification Method:** Test
 - **Dependencies:** FR-023
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 Approved by SH-01 (PR #16)
 
 ### FR-026 — Feature enforcement
 - **Statement:** The system shall provide a tenant feature to the tenant and its customers only when the feature is enabled for the tenant's current plan.
 - **Rationale:** Entitlements are the single control point for paid features.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a tenant whose plan disables prices display, when a customer views its services, then no prices are shown.
   - AC2: Given a tenant whose plan disables booking, when a customer views its branches, then no booking action is available.
@@ -406,7 +406,7 @@
 - **Dependencies:** FR-023
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 Approved by SH-01 (PR #16)
 
 ### FR-027 — Manual subscription activation
 - **Statement:** The system shall allow the Platform Operator to activate a paid subscription for a tenant after an external payment.
@@ -2098,7 +2098,7 @@
 - **Rationale:** Every tenant without a paid subscription falls back to the free plan; its features are configured through the plan-feature matrix.
 - **Source:** SH-01 (verification of F-002, 2026-10-28; Claude proposal approved)
 - **Priority:** Must
-- **Status:** Proposed
+- **Status:** Approved
 - **Acceptance Criteria:**
   - AC1: Given a new installation, when the plans are listed, then exactly one plan is marked free.
   - AC2: Given the free plan, when the Platform Operator tries to delete it, then the system rejects the request.
@@ -2107,7 +2107,7 @@
 - **Dependencies:** FR-021, FR-023
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #14)
+- **History:** 2026-10-28 Proposed (PR #14); 2026-10-28 Approved by SH-01 (PR #16)
 
 ## Notifications
 
