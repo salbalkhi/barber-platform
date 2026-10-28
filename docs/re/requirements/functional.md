@@ -312,7 +312,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-019
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ## Plans and Subscriptions
@@ -860,7 +860,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-045, FR-049
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-011
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #4)
 
 ### FR-058 — Customer cancellation
@@ -1211,7 +1211,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-080
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #5)
 
 ### FR-082 — Credit batch expiry date
@@ -1301,7 +1301,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-086
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #6)
 
 ### FR-088 — Apply code at booking
@@ -1675,7 +1675,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-112
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #7)
 
 ### FR-114 — Remove self from barber favorites
@@ -2108,3 +2108,150 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #14)
+
+## Notifications
+
+### FR-143 — Notification delivery
+- **Statement:** The system shall deliver every notification as a push notification and store it in the recipient's in-app notification list.
+- **Rationale:** Push and in-app are the notification channels (decided with OQ-011).
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given any notification event, when it is triggered, then the recipient receives a push notification and the notification appears in their in-app list.
+  - AC2: Given push delivery fails, when the recipient opens the app, then the notification is still in the in-app list.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-144 — Notify new booking
+- **Statement:** The system shall notify the assigned barber and the Branch Manager of each new booking at their branch.
+- **Rationale:** The shop learns about new bookings.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch with a manager, when a booking assigned to barber B is created, then B and the manager receive a notification.
+  - AC2: Given a branch without a manager, when a booking is created, then the assigned barber and the Tenant Admin receive a notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-049, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-145 — Notify booking confirmation
+- **Statement:** The system shall notify the customer when their pending booking is confirmed.
+- **Rationale:** Manual confirmation needs feedback to the customer.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Pending booking, when it is confirmed, then the customer receives a notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-057, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-146 — Notify customer cancellation
+- **Statement:** The system shall notify the assigned barber and the Branch Manager when a customer cancels a booking.
+- **Rationale:** The shop learns about freed slots.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking of barber B at a branch with a manager, when the customer cancels it, then B and the manager receive a notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-058, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-147 — Appointment reminder
+- **Statement:** The system shall remind the customer of a confirmed booking at a lead time before the start set by the Tenant Admin.
+- **Rationale:** Reduces no-shows.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a reminder lead time of L hours and a confirmed booking at time T, when T minus L is reached, then the customer receives a reminder.
+  - AC2: Given a Tenant Admin, when they set the lead time, then the saved value is applied to future reminders.
+- **Verification Method:** Test
+- **Dependencies:** FR-045, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-148 — Rating request
+- **Statement:** The system shall ask the customer to rate the barber and the branch when their booking is completed.
+- **Rationale:** Encourages ratings after completed bookings.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking, when it is marked Completed, then the customer receives a notification that opens the rating screen.
+- **Verification Method:** Test
+- **Dependencies:** FR-104, FR-105, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-149 — Notify preview quota grant
+- **Statement:** The system shall notify a customer when a tenant grants or increases their preview quota.
+- **Rationale:** Customers learn that the AI preview is available to them.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer, when the Tenant Admin grants them a quota, then the customer receives a notification stating the tenant and the number of previews.
+- **Verification Method:** Test
+- **Dependencies:** FR-066, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-150 — Credit batch expiry warning
+- **Statement:** The system shall warn the Tenant Admin a number of days before a credit batch expires, as set by the Platform Operator.
+- **Rationale:** Tenants can use or regrant credits before expiry.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a warning lead time of N days and a batch expiring on date D with unused credits, when D minus N days is reached, then the Tenant Admin receives a notification.
+  - AC2: Given the Platform Operator, when they set N, then the saved value is applied to future warnings.
+- **Verification Method:** Test
+- **Dependencies:** FR-082, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-151 — Operator report notification
+- **Statement:** The system shall show each new report of a rating comment or chat message in the Platform Operator's back-office as an unread notification.
+- **Rationale:** The operator acts on reports.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a new report, when it is submitted, then the back-office shows it as unread until the operator opens it.
+- **Verification Method:** Test
+- **Dependencies:** FR-108, FR-138
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-152 — Notification preferences
+- **Statement:** The system shall allow each user to turn off notification types except booking cancellation, booking rejection and barber unassignment notifications.
+- **Rationale:** Users control non-critical notifications; critical ones always arrive.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer who turns off appointment reminders, when a reminder is due, then no reminder is sent.
+  - AC2: Given any user, when they open notification settings, then cancellation, rejection and unassignment notifications cannot be turned off.
+- **Verification Method:** Test
+- **Dependencies:** FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
