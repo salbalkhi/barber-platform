@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #3)
+Last updated: 2026-10-28 (PR #4)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -46,3 +46,28 @@ Last updated: 2026-10-28 (PR #3)
 | FR-038 | Credits on subscription and renewal | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-039 | Manage credit packs | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-040 | Purchase credit pack | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-041 | Service catalog | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-042 | Branch service price | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-043 | Branch service activation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-044 | View branch services | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-045 | Booking settings | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-046 | Customer registration | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-047 | Browsing without registration | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-048 | Registration required for booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-049 | Create booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-050 | Available start times | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-051 | Booking horizon | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-052 | Branch-level auto-assignment | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-053 | One active booking per customer | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-054 | No-show ban | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-055 | Lift no-show ban | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-056 | Automatic confirmation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-057 | Manual confirmation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-058 | Customer cancellation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-059 | Shop cancellation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-060 | Notify customer of shop cancellation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-061 | Assign barber to unassigned booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-062 | Mark no-show | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-063 | Complete booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-064 | Record payment per service | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-065 | Exchange rate snapshot on completion | Must | Proposed | SH-01 | — | — | — | — | — | — |
