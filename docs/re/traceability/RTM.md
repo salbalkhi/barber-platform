@@ -1,5 +1,5 @@
 # Requirements Traceability Matrix
-Last updated: 2026-10-28 (PR #8)
+Last updated: 2026-10-28 (PR #15)
 
 > One row per requirement, including Rejected and Deprecated. Empty cell = `—`.
 > Status here must match the requirement file (mismatch = deviation D9).
@@ -138,3 +138,23 @@ Last updated: 2026-10-28 (PR #8)
 | FR-130 | Payroll statement visibility | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-131 | Attribute services to performing branch | Must | Proposed | SH-01 | — | — | — | — | — | — |
 | FR-132 | Branch activity report | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-133 | Chat with branch | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-134 | Branch-side chat recipient | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-135 | Text-only messages | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-136 | Chat retention setting | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-137 | Delete expired chat messages | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-138 | Report chat message | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-139 | Block customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-140 | Unblock customer from chat | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-141 | Notify new chat message | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-142 | Single free plan | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-143 | Notification delivery | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-144 | Notify new booking | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-145 | Notify booking confirmation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-146 | Notify customer cancellation | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-147 | Appointment reminder | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-148 | Rating request | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-149 | Notify preview quota grant | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-150 | Credit batch expiry warning | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-151 | Operator report notification | Must | Proposed | SH-01 | — | — | — | — | — | — |
+| FR-152 | Notification preferences | Must | Proposed | SH-01 | — | — | — | — | — | — |

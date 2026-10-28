@@ -52,19 +52,20 @@
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ### FR-003 — Create branch
-- **Statement:** The system shall allow the Tenant Admin to create a branch with a name, a city and a location.
-- **Rationale:** A tenant owns one or more branches; the city is used by the favorites rule and the location by proximity search.
+- **Statement:** The system shall allow the Tenant Admin to create a branch with a name, a city, a location and a phone number.
+- **Rationale:** A tenant owns one or more branches; the city is used by the favorites rule, the location by proximity search and the phone number by the phone-call contact type.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
 - **Status:** Proposed
 - **Acceptance Criteria:**
-  - AC1: Given a logged-in Tenant Admin, when they create a branch with a name, city and location, then the branch appears in the tenant's branch list.
+  - AC1: Given a logged-in Tenant Admin, when they create a branch with a name, city, location and phone number, then the branch appears in the tenant's branch list.
   - AC2: Given a branch form without a city, when the Tenant Admin submits it, then the system rejects it and indicates that the city is required.
+  - AC3: Given a branch form without a phone number, when the Tenant Admin submits it, then the system rejects it and indicates that the phone number is required.
 - **Verification Method:** Test
 - **Dependencies:** FR-001
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** OQ-001
-- **History:** 2026-10-28 Proposed (PR #2)
+- **History:** 2026-10-28 Proposed (PR #2); 2026-10-28 revised after verification (PR #14)
 
 ### FR-004 — Branch working hours
 - **Statement:** The system shall allow the Tenant Admin to define weekly working hours for each branch.
@@ -311,25 +312,26 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-019
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #2)
 
 ## Plans and Subscriptions
 
 ### FR-021 — Manage plans
-- **Statement:** The system shall allow the Platform Operator to create and edit subscription plans with a name, a plan level, a price and a subscription duration.
+- **Statement:** The system shall allow the Platform Operator to create and edit subscription plans with a name, a plan level, a price in SYP and a subscription duration.
 - **Rationale:** Plans and their number are decided after launch and are configured by the operator.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given the Platform Operator, when they create a plan with name, level, price and duration, then the plan is available for assignment to tenants.
-  - AC2: Given a non-operator user, when they attempt to create or edit a plan, then the system rejects the request.
+  - AC2: Given an existing plan, when the Platform Operator changes its price, then the plan shows the new price.
+  - AC3: Given a non-operator user, when they attempt to create or edit a plan, then the system rejects the request.
 - **Verification Method:** Test
 - **Dependencies:** none
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-022 — Free plan
 - **Statement:** The system shall assign the free plan to every tenant that has no active paid subscription.
@@ -339,12 +341,12 @@
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given a newly created tenant without a paid subscription, when its plan is viewed, then the plan is the free plan.
-  - AC2: Given a tenant whose grace period ended, when its plan is viewed, then the plan is the free plan.
+  - AC2: Given a tenant whose grace period ended, when its plan is viewed, then the plan is the free plan. (Verifiable after F-005.)
 - **Verification Method:** Test
-- **Dependencies:** FR-001, FR-021
+- **Dependencies:** FR-001, FR-021, FR-142
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-023 — Plan-feature matrix
 - **Statement:** The system shall allow the Platform Operator to enable or disable each tenant feature for each plan.
@@ -354,27 +356,27 @@
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given a plan and a feature, when the Platform Operator enables the feature for the plan, then the matrix shows the feature as enabled for that plan.
-  - AC2: Given the matrix, when it is viewed, then it lists at least: prices display, contact, booking, maps navigation, discount codes, AI haircut preview.
+  - AC2: Given the matrix, when it is viewed, then it lists at least: prices display, booking, maps navigation, discount codes, AI haircut preview.
 - **Verification Method:** Test
 - **Dependencies:** FR-021
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
-- **History:** 2026-10-28 Proposed (PR #3)
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-024 — Contact type per plan
 - **Statement:** The system shall allow the Platform Operator to set, for each plan, whether customer contact is by phone call or by in-app chat.
-- **Rationale:** Example decided by SH-01: phone call for the free plan, in-app chat for paid plans.
+- **Rationale:** The contact action is available on every plan; only its type is set per plan. Example decided by SH-01: phone call for the free plan, in-app chat for paid plans.
 - **Source:** SH-01 (elicitation 2026-10-28)
 - **Priority:** Must
 - **Status:** Proposed
 - **Acceptance Criteria:**
   - AC1: Given a plan set to phone call, when a customer views a branch of a tenant on that plan, then the contact action starts a phone call to the branch number.
-  - AC2: Given a plan set to in-app chat, when a customer views a branch of a tenant on that plan, then the contact action opens an in-app chat.
+  - AC2: Given a plan set to in-app chat, when a customer views a branch of a tenant on that plan, then the contact action opens an in-app chat. (Verifiable after F-010.)
 - **Verification Method:** Test
-- **Dependencies:** FR-023
+- **Dependencies:** FR-003, FR-023
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-014
-- **History:** 2026-10-28 Proposed (PR #3)
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #3); 2026-10-28 revised after verification (PR #14)
 
 ### FR-025 — Included preview credits per plan
 - **Statement:** The system shall allow the Platform Operator to set the number of AI preview credits included with each plan.
@@ -858,7 +860,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-045, FR-049
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-011
+- **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #4)
 
 ### FR-058 — Customer cancellation
@@ -1209,7 +1211,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-080
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #5)
 
 ### FR-082 — Credit batch expiry date
@@ -1299,7 +1301,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-086
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #6)
 
 ### FR-088 — Apply code at booking
@@ -1673,7 +1675,7 @@
 - **Verification Method:** Test
 - **Dependencies:** FR-112
 - **Trace:** UC: — | ADR: — | CR: —
-- **Open Questions:** OQ-005, OQ-011
+- **Open Questions:** OQ-005
 - **History:** 2026-10-28 Proposed (PR #7)
 
 ### FR-114 — Remove self from barber favorites
@@ -1954,3 +1956,302 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** none
 - **History:** 2026-10-28 Proposed (PR #8)
+
+## In-app Chat
+
+### FR-133 — Chat with branch
+- **Statement:** The system shall allow a logged-in customer to open a text chat with a branch whose tenant plan sets the contact type to in-app chat.
+- **Rationale:** Customers contact the branch, not individual barbers; no booking is required.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch on a plan with in-app chat, when a logged-in customer without any booking taps contact, then a chat with that branch opens.
+  - AC2: Given a branch on a plan with phone call, when the customer views it, then no chat action is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-024, FR-048
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-134 — Branch-side chat recipient
+- **Statement:** The system shall deliver a branch's chats to the Branch Manager of that branch.
+- **Rationale:** The Branch Manager answers for the branch; without a manager the Tenant Admin answers (FR-010).
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given branch X with a manager, when a customer sends a message to X, then the manager of X sees it in the tenant app.
+  - AC2: Given branch X without a manager, when a customer sends a message to X, then the Tenant Admin sees it.
+  - AC3: Given a barber of X who is not its manager, when they open the tenant app, then they cannot see X's chats.
+- **Verification Method:** Test
+- **Dependencies:** FR-010, FR-133
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-135 — Text-only messages
+- **Statement:** The system shall accept only text content in chat messages.
+- **Rationale:** Avoids storing customer images in chat.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a chat, when a user tries to attach an image or file, then no attachment option is available.
+- **Verification Method:** Test
+- **Dependencies:** FR-133
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-136 — Chat retention setting
+- **Statement:** The system shall allow the Platform Operator to set the chat message retention period, with a default of 90 days.
+- **Rationale:** Messages are not kept indefinitely.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a new installation, when the setting is viewed, then its value is 90 days.
+  - AC2: Given the Platform Operator, when they set it to N days, then the saved value is N.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-137 — Delete expired chat messages
+- **Statement:** The system shall delete each chat message once it is older than the chat retention period.
+- **Rationale:** Applies the retention setting.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a retention period of 90 days, when a message becomes 91 days old, then it is no longer visible to either party and no longer stored.
+- **Verification Method:** Test
+- **Dependencies:** FR-136
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-138 — Report chat message
+- **Statement:** The system shall allow either chat party to report a message to the Platform Operator.
+- **Rationale:** Abusive messages reach the operator, as for rating comments.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a received message, when the recipient reports it, then the report appears in the Platform Operator's report list with the message text.
+- **Verification Method:** Test
+- **Dependencies:** FR-133
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-139 — Block customer from chat
+- **Statement:** The system shall allow the Branch Manager to block a customer from sending chat messages to their branch.
+- **Rationale:** The shop can stop abusive customers.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a blocked customer, when they try to send a message to that branch, then the system rejects it.
+  - AC2: Given the same customer, when they message another branch, then the block does not apply.
+- **Verification Method:** Test
+- **Dependencies:** FR-134
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-140 — Unblock customer from chat
+- **Statement:** The system shall allow the Branch Manager to unblock a customer blocked from their branch's chat.
+- **Rationale:** Blocks are reversible.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a blocked customer, when the Branch Manager unblocks them, then the customer can send messages to that branch again.
+- **Verification Method:** Test
+- **Dependencies:** FR-139
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #13)
+
+### FR-141 — Notify new chat message
+- **Statement:** The system shall notify the recipient of each new chat message by push and in-app notification.
+- **Rationale:** Parties learn about new messages.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer sends a message to branch X, when it is saved, then the branch-side recipient receives a push and in-app notification.
+  - AC2: Given the branch replies, when the reply is saved, then the customer receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-134
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #13)
+
+## Plans and Subscriptions (addendum)
+
+### FR-142 — Single free plan
+- **Statement:** The system shall provide exactly one free plan that the Platform Operator cannot delete.
+- **Rationale:** Every tenant without a paid subscription falls back to the free plan; its features are configured through the plan-feature matrix.
+- **Source:** SH-01 (verification of F-002, 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a new installation, when the plans are listed, then exactly one plan is marked free.
+  - AC2: Given the free plan, when the Platform Operator tries to delete it, then the system rejects the request.
+  - AC3: Given the free plan, when the Platform Operator changes its features in the matrix, then the change is saved.
+- **Verification Method:** Test
+- **Dependencies:** FR-021, FR-023
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #14)
+
+## Notifications
+
+### FR-143 — Notification delivery
+- **Statement:** The system shall deliver every notification as a push notification and store it in the recipient's in-app notification list.
+- **Rationale:** Push and in-app are the notification channels (decided with OQ-011).
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given any notification event, when it is triggered, then the recipient receives a push notification and the notification appears in their in-app list.
+  - AC2: Given push delivery fails, when the recipient opens the app, then the notification is still in the in-app list.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-144 — Notify new booking
+- **Statement:** The system shall notify the assigned barber and the Branch Manager of each new booking at their branch.
+- **Rationale:** The shop learns about new bookings.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch with a manager, when a booking assigned to barber B is created, then B and the manager receive a notification.
+  - AC2: Given a branch without a manager, when a booking is created, then the assigned barber and the Tenant Admin receive a notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-049, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-145 — Notify booking confirmation
+- **Statement:** The system shall notify the customer when their pending booking is confirmed.
+- **Rationale:** Manual confirmation needs feedback to the customer.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Pending booking, when it is confirmed, then the customer receives a notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-057, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-146 — Notify customer cancellation
+- **Statement:** The system shall notify the assigned barber and the Branch Manager when a customer cancels a booking.
+- **Rationale:** The shop learns about freed slots.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking of barber B at a branch with a manager, when the customer cancels it, then B and the manager receive a notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-058, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-147 — Appointment reminder
+- **Statement:** The system shall remind the customer of a confirmed booking at a lead time before the start set by the Tenant Admin.
+- **Rationale:** Reduces no-shows.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a reminder lead time of L hours and a confirmed booking at time T, when T minus L is reached, then the customer receives a reminder.
+  - AC2: Given a Tenant Admin, when they set the lead time, then the saved value is applied to future reminders.
+- **Verification Method:** Test
+- **Dependencies:** FR-045, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-148 — Rating request
+- **Statement:** The system shall ask the customer to rate the barber and the branch when their booking is completed.
+- **Rationale:** Encourages ratings after completed bookings.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking, when it is marked Completed, then the customer receives a notification that opens the rating screen.
+- **Verification Method:** Test
+- **Dependencies:** FR-104, FR-105, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-149 — Notify preview quota grant
+- **Statement:** The system shall notify a customer when a tenant grants or increases their preview quota.
+- **Rationale:** Customers learn that the AI preview is available to them.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer, when the Tenant Admin grants them a quota, then the customer receives a notification stating the tenant and the number of previews.
+- **Verification Method:** Test
+- **Dependencies:** FR-066, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-150 — Credit batch expiry warning
+- **Statement:** The system shall warn the Tenant Admin a number of days before a credit batch expires, as set by the Platform Operator.
+- **Rationale:** Tenants can use or regrant credits before expiry.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a warning lead time of N days and a batch expiring on date D with unused credits, when D minus N days is reached, then the Tenant Admin receives a notification.
+  - AC2: Given the Platform Operator, when they set N, then the saved value is applied to future warnings.
+- **Verification Method:** Test
+- **Dependencies:** FR-082, FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-151 — Operator report notification
+- **Statement:** The system shall show each new report of a rating comment or chat message in the Platform Operator's back-office as an unread notification.
+- **Rationale:** The operator acts on reports.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a new report, when it is submitted, then the back-office shows it as unread until the operator opens it.
+- **Verification Method:** Test
+- **Dependencies:** FR-108, FR-138
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
+
+### FR-152 — Notification preferences
+- **Statement:** The system shall allow each user to turn off notification types except booking cancellation, booking rejection and barber unassignment notifications.
+- **Rationale:** Users control non-critical notifications; critical ones always arrive.
+- **Source:** SH-01 (elicitation 2026-10-28; Claude proposal approved)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer who turns off appointment reminders, when a reminder is due, then no reminder is sent.
+  - AC2: Given any user, when they open notification settings, then cancellation, rejection and unassignment notifications cannot be turned off.
+- **Verification Method:** Test
+- **Dependencies:** FR-143
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #15)
