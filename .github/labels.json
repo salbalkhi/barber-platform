@@ -1,0 +1,17 @@
+[
+  {"name": "type:requirement",     "color": "1d76db", "description": "New or changed requirement before approval"},
+  {"name": "type:change-request",  "color": "5319e7", "description": "Change request (CR)"},
+  {"name": "type:question",        "color": "fbca04", "description": "Open question (OQ)"},
+  {"name": "type:deviation",       "color": "b60205", "description": "Deviation found by commit monitoring"},
+  {"name": "status:proposed",      "color": "c5def5", "description": "Awaiting decision"},
+  {"name": "status:approved",      "color": "0e8a16", "description": "Approved by the Product Owner"},
+  {"name": "status:rejected",      "color": "e4e669", "description": "Rejected by the Product Owner"},
+  {"name": "status:deferred",      "color": "d4c5f9", "description": "Deferred to a later milestone"},
+  {"name": "priority:must",        "color": "b60205", "description": "MoSCoW: Must"},
+  {"name": "priority:should",      "color": "d93f0b", "description": "MoSCoW: Should"},
+  {"name": "priority:could",       "color": "fbca04", "description": "MoSCoW: Could"},
+  {"name": "priority:wont",        "color": "cccccc", "description": "MoSCoW: Won't (this time)"},
+  {"name": "severity:high",        "color": "b60205", "description": "Deviation severity: high"},
+  {"name": "severity:medium",      "color": "d93f0b", "description": "Deviation severity: medium"},
+  {"name": "severity:low",         "color": "fef2c0", "description": "Deviation severity: low"}
+]
