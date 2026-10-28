@@ -609,3 +609,369 @@
 - **Trace:** UC: — | ADR: — | CR: —
 - **Open Questions:** OQ-003
 - **History:** 2026-10-28 Proposed (PR #3)
+
+## Services and Booking
+
+### FR-041 — Service catalog
+- **Statement:** The system shall allow the Tenant Admin to manage a tenant-wide service catalog where each service has a name, a duration and a commission rate.
+- **Rationale:** Services, durations and commission rates are defined once for all branches.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Tenant Admin, when they create a service with name, duration and commission rate, then the service is available to all branches of the tenant.
+  - AC2: Given a Branch Manager, when they attempt to change a service's duration or commission rate, then the system rejects the request.
+- **Verification Method:** Test
+- **Dependencies:** FR-001
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-042 — Branch service price
+- **Statement:** The system shall allow the Branch Manager to set the price in SYP of each catalog service for their branch.
+- **Rationale:** Prices may differ between branches; durations do not.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a service, when the Branch Manager of branch X sets its price, then customers of branch X see that price and other branches keep their own prices.
+- **Verification Method:** Test
+- **Dependencies:** FR-012, FR-041
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-043 — Branch service activation
+- **Statement:** The system shall allow the Branch Manager to activate or deactivate each catalog service for their branch.
+- **Rationale:** Not every branch offers every service.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a service deactivated in branch X, when a customer books at branch X, then the service is not selectable.
+- **Verification Method:** Test
+- **Dependencies:** FR-012, FR-041
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-044 — View branch services
+- **Statement:** The system shall display to customers the active services of a branch with their durations.
+- **Rationale:** Customers choose services before booking; prices are shown only when the plan enables them (FR-026).
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch with active services, when a customer opens the branch, then each active service is listed with its duration.
+- **Verification Method:** Test
+- **Dependencies:** FR-043
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-045 — Booking settings
+- **Statement:** The system shall allow the Tenant Admin to set the slot granularity, the confirmation mode, the customer cancellation deadline, the booking horizon and the no-show threshold of the tenant.
+- **Rationale:** These booking parameters are decided per tenant.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a Tenant Admin, when they save values for each of the five settings, then the saved values are displayed and applied to new bookings.
+  - AC2: Given a confirmation mode setting, when it is viewed, then its options are automatic and manual.
+- **Verification Method:** Test
+- **Dependencies:** FR-001
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-046 — Customer registration
+- **Statement:** The system shall register a customer by phone number verified with a one-time password.
+- **Rationale:** Phone + OTP is the customer authentication method.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a phone number, when the customer enters the correct OTP sent to it, then a customer account linked to that number exists and the customer is logged in.
+  - AC2: Given an incorrect OTP, when it is entered, then no account is created and the customer is not logged in.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-006
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-047 — Browsing without registration
+- **Statement:** The system shall allow unregistered users to browse branches, barbers and services.
+- **Rationale:** Registration is required only for booking.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given an unregistered user, when they search and open a branch, then the branch, its barbers and services are displayed.
+- **Verification Method:** Test
+- **Dependencies:** none
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-048 — Registration required for booking
+- **Statement:** The system shall require a logged-in customer account to create a booking.
+- **Rationale:** Registration is required only for booking.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given an unregistered user, when they start a booking, then the system asks them to register or log in before the booking is created.
+- **Verification Method:** Test
+- **Dependencies:** FR-046
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-049 — Create booking
+- **Statement:** The system shall allow a customer to book one or more active services of a branch at a start time, with a selected barber or without a barber.
+- **Rationale:** Booking on a specific barber and on a branch are both allowed.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer, a branch and selected services, when they choose a barber and an available start time, then a booking for that barber is created.
+  - AC2: Given a customer, when they choose no barber and an available start time, then a booking is created and a barber is assigned by FR-052.
+  - AC3: Given selected services, when the booking is created, then its duration equals the sum of the services' durations.
+- **Verification Method:** Test
+- **Dependencies:** FR-043, FR-048
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-050 — Available start times
+- **Statement:** The system shall offer only start times aligned to the tenant's slot granularity at which the barber is free for the full booking duration within the branch's working hours and outside the barber's unavailability periods.
+- **Rationale:** Availability is derived from branch hours, barber unavailability and existing bookings.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a branch open 09:00–17:00, a 15-minute granularity and a 45-minute booking, when start times are offered, then 16:30 is not offered and 16:15 is offered if the barber is free 16:15–17:00.
+  - AC2: Given a barber unavailable 12:00–13:00, when start times are offered for that barber, then no booking overlapping 12:00–13:00 is offered.
+  - AC3: Given a barber already booked 10:00–10:30, when start times are offered, then no booking overlapping 10:00–10:30 is offered for that barber.
+- **Verification Method:** Test
+- **Dependencies:** FR-004, FR-013, FR-045
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-051 — Booking horizon
+- **Statement:** The system shall reject booking start times later than the tenant's booking horizon.
+- **Rationale:** The tenant decides how far in advance customers can book.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a horizon of H days, when a customer selects a date more than H days ahead, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-045
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-052 — Branch-level auto-assignment
+- **Statement:** The system shall assign a booking made without a barber to the available barber highest in the branch's barber priority order.
+- **Rationale:** Branch-level bookings are auto-assigned by tenant priority.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given barbers A (priority 1) and B (priority 2) both available, when a branch-level booking is created, then it is assigned to A.
+  - AC2: Given only B available, when a branch-level booking is created, then it is assigned to B.
+- **Verification Method:** Test
+- **Dependencies:** FR-014, FR-050
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-053 — One active booking per customer
+- **Statement:** The system shall reject a new booking by a customer who already has an active booking on the platform.
+- **Rationale:** One active booking per customer, platform-wide.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a customer with a pending or confirmed booking at any tenant, when they create another booking, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-049
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-054 — No-show ban
+- **Statement:** The system shall reject new bookings at a tenant by a customer whose no-show count at that tenant has reached the tenant's no-show threshold.
+- **Rationale:** Ban applies at that tenant only and is permanent until lifted.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a threshold of N and a customer with N no-shows at tenant T, when they book at tenant T, then the system rejects it.
+  - AC2: Given the same customer, when they book at another tenant, then the ban does not apply.
+- **Verification Method:** Test
+- **Dependencies:** FR-045, FR-062
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-055 — Lift no-show ban
+- **Statement:** The system shall allow the Tenant Admin to lift the no-show ban of a customer at their tenant.
+- **Rationale:** The ban lasts until the tenant lifts it.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a banned customer, when the Tenant Admin lifts the ban, then the customer can book at that tenant again.
+- **Verification Method:** Test
+- **Dependencies:** FR-054
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-056 — Automatic confirmation
+- **Statement:** The system shall set a new booking to Confirmed when the tenant's confirmation mode is automatic.
+- **Rationale:** Tenants choose automatic or manual confirmation.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given automatic mode, when a booking is created, then its status is Confirmed.
+- **Verification Method:** Test
+- **Dependencies:** FR-045, FR-049
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-057 — Manual confirmation
+- **Statement:** The system shall keep a new booking Pending until the assigned barber or the Branch Manager accepts or rejects it when the tenant's confirmation mode is manual.
+- **Rationale:** Tenants choose automatic or manual confirmation.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given manual mode, when a booking is created, then its status is Pending.
+  - AC2: Given a Pending booking, when the assigned barber accepts it, then its status is Confirmed.
+  - AC3: Given a Pending booking, when the Branch Manager rejects it, then its status is Rejected and the customer is notified.
+- **Verification Method:** Test
+- **Dependencies:** FR-045, FR-049
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-011
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-058 — Customer cancellation
+- **Statement:** The system shall allow a customer to cancel their booking until the tenant's cancellation deadline before the booking start time.
+- **Rationale:** Cancellation is allowed up to a tenant-defined deadline.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a deadline of D hours, when the customer cancels more than D hours before the start, then the booking status is Cancelled.
+  - AC2: Given the same deadline, when the customer tries to cancel less than D hours before the start, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-045
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-059 — Shop cancellation
+- **Statement:** The system shall allow the Branch Manager to cancel a booking of their branch.
+- **Rationale:** The shop can cancel bookings.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a confirmed booking, when the Branch Manager cancels it, then its status is Cancelled.
+- **Verification Method:** Test
+- **Dependencies:** FR-012
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-060 — Notify customer of shop cancellation
+- **Statement:** The system shall notify the customer when the shop cancels their booking.
+- **Rationale:** Customers are informed of shop cancellations.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking cancelled by the shop, when the cancellation is saved, then the customer receives a push and in-app notification.
+- **Verification Method:** Test
+- **Dependencies:** FR-059
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-005
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-061 — Assign barber to unassigned booking
+- **Statement:** The system shall allow the Branch Manager to assign a barber of their branch to a booking that has no assigned barber.
+- **Rationale:** Bookings unassigned by a transfer (FR-019) need a new barber.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking without a barber, when the Branch Manager assigns a free barber of the branch, then the booking shows that barber.
+- **Verification Method:** Test
+- **Dependencies:** FR-019
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-062 — Mark no-show
+- **Statement:** The system shall allow the assigned barber or the Branch Manager to mark a confirmed booking as No-show after its start time.
+- **Rationale:** No-shows are counted for the ban rule.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a confirmed booking whose start time has passed, when the assigned barber marks it No-show, then its status is No-show and the customer's no-show count at that tenant increases by one.
+  - AC2: Given a booking whose start time has not passed, when someone marks it No-show, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-049
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-063 — Complete booking
+- **Statement:** The system shall allow the assigned barber or the Branch Manager to mark a confirmed booking as Completed.
+- **Rationale:** Completion closes the booking and triggers payment recording and preview deletion.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a confirmed booking, when the assigned barber marks it Completed with payment data, then its status is Completed.
+- **Verification Method:** Test
+- **Dependencies:** FR-049
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-064 — Record payment per service
+- **Statement:** The system shall require, when a booking is completed, the paid amount and the currency (SYP or USD) for each service of the booking.
+- **Rationale:** Payment at the shop is recorded per service; it feeds payroll commission.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a booking with two services, when it is completed, then the system requires an amount and a currency for each of the two services.
+  - AC2: Given a missing amount for a service, when completion is submitted, then the system rejects it.
+- **Verification Method:** Test
+- **Dependencies:** FR-063
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** none
+- **History:** 2026-10-28 Proposed (PR #4)
+
+### FR-065 — Exchange rate snapshot on completion
+- **Statement:** The system shall store the SYP/USD exchange rate in effect with each recorded booking payment.
+- **Rationale:** USD payments are converted at the rate of the payment moment.
+- **Source:** SH-01 (elicitation 2026-10-28)
+- **Priority:** Must
+- **Status:** Proposed
+- **Acceptance Criteria:**
+  - AC1: Given a payment recorded at rate X, when the rate later changes, then the record still shows rate X.
+- **Verification Method:** Test
+- **Dependencies:** FR-064
+- **Trace:** UC: — | ADR: — | CR: —
+- **Open Questions:** OQ-004
+- **History:** 2026-10-28 Proposed (PR #4)

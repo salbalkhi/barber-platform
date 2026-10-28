@@ -36,3 +36,5 @@
 | Plan Level | Numeric rank of a plan set by the operator; higher levels rank higher in search results; the free plan ranks last. | SH-01 |
 | Grace Period | Operator-configured period after paid-subscription expiry during which the tenant keeps its paid plan before falling back to the free plan. | SH-01 |
 | Credit Pack | Operator-defined bundle of preview credits with a price, purchasable by tenants. | SH-01 |
+| Booking Status | Pending (manual confirmation) → Confirmed → Completed, or Rejected, Cancelled, No-show. | SH-01 |
+| Active Booking | A booking in status Pending or Confirmed. | SH-01 |
